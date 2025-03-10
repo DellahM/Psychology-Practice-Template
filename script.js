@@ -40,33 +40,6 @@ faqQuestions.forEach(question => {
     });
 });
 
-// Subscription Popup Logic
-let popupShown = false; // Track if the popup has been shown
-
-function showPopup() {
-    if (!popupShown) { // Check if the popup has already been shown
-        document.getElementById('subscribePopup').style.display = 'block'; // Show the pop-up
-        popupShown = true; // Set to true to prevent showing again
-    }
-}
-
-function closePopup() {
-    document.getElementById('subscribePopup').style.display = 'none'; // Hide the pop-up
-    popupShown = false; // Reset the popup shown status
-}
-
-function subscribe() {
-    const emailInput = document.querySelector('#subscribePopup input[type="email"]');
-    const email = emailInput.value;
-
-    if (email) {
-        alert(`Thank you for subscribing with the email: ${email}!`); // Show a thank you message
-        emailInput.value = ''; // Clear the input field
-        closePopup(); // Close the pop-up
-    } else {
-        alert('Please enter a valid email address.'); // Alert if the email is empty
-    }
-}
 
 // Function to scroll to the top of the page
 function scrollToTop() {
