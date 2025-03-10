@@ -72,7 +72,7 @@ header {
 
 /* Hero Section */
 .hero {
-    background: url(Images/lamp.jpg) no-repeat center center/cover;
+    background: url("Images B/lamp.jpg") no-repeat center center/cover;
     color: rgb(7, 7, 7);
     text-align: center;
     padding: 150px 20px; /* Increased padding for a larger hero section */
@@ -204,7 +204,7 @@ h2 {
     margin: 20px 0; /* Space above and below the banner */
     border-radius: 10px; /* Optional: rounded corners */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Optional: shadow for depth */
-    background-image: url('Images/green.png'); /* Replace with your image URL */
+    background-image: url('Images A/green.png'); /* Replace with your image URL */
     background-size: cover; /* Cover the entire area */
     background-position: center; /* Center the image */
 }
@@ -220,7 +220,7 @@ h2 {
     margin: 20px 0; /* Space above and below the banner */
     border-radius: 10px; /* Optional: rounded corners */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Optional: shadow for depth */
-    background-image: url('Images/blog (1).png'); /* Replace with your image URL */
+    background-image: url('Images A/blog (1).png'); /* Replace with your image URL */
     background-size: cover; /* Cover the entire area */
     background-position: center; /* Center the image */
 }
@@ -253,7 +253,7 @@ h2 {
     margin: 20px 0; /* Space above and below the banner */
     border-radius: 10px; /* Optional: rounded corners */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Optional: shadow for depth */
-    background-image: url('Images/d.png'); /* Replace with your image URL */
+    background-image: url('Images A/d.png'); /* Replace with your image URL */
     background-size: cover; /* Cover the entire area */
     background-position: center; /* Center the image */
 }
