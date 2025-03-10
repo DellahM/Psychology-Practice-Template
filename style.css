@@ -562,12 +562,10 @@ h2 {
             form {
                 max-width: 90%; /* Max width for the form on small screens */
             }
+            img {
+                max-width: 100%; /* Ensures images are responsive on smaller screens */
+                height: auto;    /* Maintains aspect ratio */
+            }
+
         }
-        
-       /* More Responsive Styles */
-@media (max-width: 768px) {
-    img {
-        max-width: 100%; /* Ensures images are responsive on smaller screens */
-        height: auto;    /* Maintains aspect ratio */
     }
-}
