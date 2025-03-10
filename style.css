@@ -2,27 +2,23 @@
 * {
     box-sizing: border-box;
     margin: 0;
-    padding:0;
-     
-   
+    padding: 0;
 }
 
 body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
-  /*  background: linear-gradient(purple white blue);
-    color: purple;*/
-    background:#F2EDE2;
-    margin: 0; /* Remove default margin */
-    height: 100vh; /* Full height for the body */
-    display: flex; /* Use flexbox for centering */
-    flex-direction: column; /* Stack children vertically */
+    background: #F2EDE2;
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
     overflow-x: hidden;
 }
 
 /* Header and Navigation */
 header {
-    background:whitesmoke;
+    background: whitesmoke;
     color: rgb(7, 7, 7);
 }
 
@@ -37,7 +33,7 @@ header {
 .logo {
     font-size: 24px;
     font-weight: bold;
-    color:#f5f5f5;
+    color: #f5f5f5;
 }
 
 .nav-list {
@@ -68,35 +64,38 @@ header {
     margin: 3px 0;
 }
 
-
-
 /* Hero Section */
 .hero {
     background: url("Images B/lamp.jpg") no-repeat center center/cover;
     color: rgb(7, 7, 7);
     text-align: center;
-    padding: 150px 20px; /* Increased padding for a larger hero section */
-    min-height: 80vh; /* Set a minimum height for the hero section */
+    padding: 150px 20px;
+    min-height: 80vh;
+    animation: fadeIn 1s ease; /* Fade-in effect */
 }
 
 .hero h1 {
-    font-size: 60px; /* Increased font size for the heading */
+    font-size: 60px;
     margin-bottom: 20px;
+    animation: slideIn 1s ease; /* Slide-in effect */
 }
 
 .hero p {
-    font-size: 24px; /* Increased font size for the paragraph */
+    font-size: 24px;
     margin-bottom: 30px;
+    animation: slideIn 1s ease; /* Slide-in effect */
 }
 
 .btn {
     background: orange;
     color: rgb(253, 252, 252);
-    padding: 15px 30px; /* Increased padding for the button */
+    padding: 15px 30px;
     text-decoration: none;
     border-radius: 5px;
-    font-size: 18px; /* Increased font size for the button */
+    font-size: 18px;
+    animation: fadeIn 1s ease; /* Fade-in effect */
 }
+
 /* Section Headings */
 h2 {
     font-size: 40px;
@@ -104,434 +103,318 @@ h2 {
     text-align: center;
 }
 
-
-
 /* Clients Section */
 .client-cards {
-    display: flex; /* Use flexbox for layout */
-    justify-content: space-around; /* Space out the cards */
-    flex-wrap: wrap; /* Allow wrapping on smaller screens */
-    margin-top: 20px; /* Space above the cards */
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-top: 20px;
 }
 
 .client-card {
-    background-color: #ffffff; /* Card background color */
-    border: 1px solid #ccc; /* Border for the card */
-    border-radius: 10px; /* Rounded corners */
-    padding: 20px; /* Padding inside the card */
-    text-align: center; /* Center text */
-    width: 250px; /* Fixed width for the cards */
-    margin: 10px; /* Space between cards */
-    text-decoration: none; /* Remove underline from links */
-    transition: transform 0.3s, box-shadow 0.3s; /* Smooth transition for effects */
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    width: 250px;
+    margin: 10px;
+    text-decoration: none;
+    transition: transform 0.3s, box-shadow 0.3s;
+    animation: fadeIn 0.5s ease; /* Fade-in effect */
 }
 
 .client-card i {
-    font-size: 40px; /* Size of the icon */
-    color: #4CAF50; /* Icon color */
-    margin-bottom: 10px; /* Space below the icon */
+    font-size: 40px;
+    color: #4CAF50;
+    margin-bottom: 10px;
 }
 
 .client-card:hover {
-    transform: scale(1.05); /* Scale up the card on hover */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
+    transform: scale(1.05) translateY(-5px); /* Scale and lift on hover */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
 .client-card h3 {
-    margin: 0 0 10px; /* Space below the heading */
+    margin: 0 0 10px;
 }
 
 .client-card p {
-    margin: 0; /* Remove margin for paragraph */
+    margin: 0;
 }
+
 /* About Section */
 .about-section {
-    padding: 50px 20px; /* Padding for the section */
-    background-color: #f9f9f9; /* Light background color */
+    padding: 50px 20px;
+    background-color: #f9f9f9;
 }
 
 .about-content {
-    display: flex; /* Use flexbox for layout */
-    align-items: center; /* Center items vertically */
-    justify-content: space-between; /* Space between text and image */
-    max-width: 1200px; /* Max width for the content */
-    margin: 0 auto; /* Center the content */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .about-text {
-    flex: 1; /* Allow text to take available space */
-    padding-right: 20px; /* Space between text and image */
+    flex: 1;
+    padding-right: 20px;
+    animation: fadeIn 0.5s ease; /* Fade-in effect for text */
 }
-
-.about-image {
-    flex: 1; /* Allow image to take available space */
-}
-
-.about-image img {
-    width: 100%; /* Make the image responsive */
-    height: auto; /* Maintain aspect ratio */
-    border-radius: 10px; /* Optional: rounded corners for the image */
-    cursor: pointer; /* Change cursor to pointer for clickable image */
-    transition: opacity 3s ease; /* Change duration to 1 second for the fade-out effect */
-}
-
-.fade-out {
-    opacity: 1; /* Initial opacity */
-}
-
-.fade-out.hidden {
-    opacity: 0; /* Fade out effect */
-}
-
-
-/* Resources Section */
-#resources {
-   /* background: linear-gradient(white, rgb(65, 214, 202)); /* Light blue background */
-    color: rgb(14, 13, 13); /* Text color for better contrast */
-    padding: 40px 20px; /* Padding for the section */
-    text-align: center; /* Center the text */
-}
-
-/*bannersection*/
-.banner-container-d {
-    width: 100%; /* Full width of the container */
-    height: 300px; /* Set a fixed height for the banner */
-    display: flex; /* Use flexbox for centering content */
-    justify-content: center; /* Center content horizontally */
-    align-items: center; /* Center content vertically */
-    color: rgb(148, 19, 19); /* Text color */
-    text-align: center; /* Center text */
-    margin: 20px 0; /* Space above and below the banner */
-    border-radius: 10px; /* Optional: rounded corners */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Optional: shadow for depth */
-    background-image: url('Images A/green.png'); /* Replace with your image URL */
-    background-size: cover; /* Cover the entire area */
-    background-position: center; /* Center the image */
-}
-
-.banner-container-a{
-    width: 100%; /* Full width of the container */
-    height: 300px; /* Set a fixed height for the banner */
-    display: flex; /* Use flexbox for centering content */
-    justify-content: center; /* Center content horizontally */
-    align-items: center; /* Center content vertically */
-    color: rgb(148, 19, 19); /* Text color */
-    text-align: center; /* Center text */
-    margin: 20px 0; /* Space above and below the banner */
-    border-radius: 10px; /* Optional: rounded corners */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Optional: shadow for depth */
+    
+    .about-image {
+        flex: 1;
+        animation: slideIn 0.5s ease; /* Slide-in effect for image */
+    }
+    
+    .about-image img {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: opacity 0.3s ease; /* Change duration to 0.3 seconds for the fade-out effect */
+    }
+    
+    /* Resources Section */
+    #resources {
+        color: rgb(14, 13, 13);
+        padding: 40px 20px;
+        text-align: center;
+        animation: fadeIn 0.5s ease; /* Fade-in effect */
+    }
+    
+    /* Banner Sections */
+    .banner-container-a,
+    .banner-container-b,
+    .banner-container-c,
+    .banner-container-d {
+        width: 100%;
+        height: 300px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: rgb(148, 19, 19);
+        text-align: center;
+        margin: 20px 0;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        background-size: cover;
+        background-position: center;
+        animation: fadeIn 0.5s ease; /* Fade-in effect */
+    }
+    
+/* Specific background images for each banner */
+.banner-container-a {
     background-image: url('Images A/blog (1).png'); /* Replace with your image URL */
-    background-size: cover; /* Cover the entire area */
-    background-position: center; /* Center the image */
 }
-
 
 .banner-container-b {
-    width: 100%; /* Full width of the container */
-    height: 300px; /* Set a fixed height for the banner */
-    display: flex; /* Use flexbox for centering content */
-    justify-content: center; /* Center content horizontally */
-    align-items: center; /* Center content vertically */
-    color: rgb(148, 19, 19); /* Text color */
-    text-align: center; /* Center text */
-    margin: 20px 0; /* Space above and below the banner */
-    border-radius: 10px; /* Optional: rounded corners */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Optional: shadow for depth */
     background-image: url('Images/therpy.jpg'); /* Replace with your image URL */
-    background-size: cover; /* Cover the entire area */
-    background-position: center; /* Center the image */
 }
 
 .banner-container-c {
-    width: 100%; /* Full width of the container */
-    height: 300px; /* Set a fixed height for the banner */
-    display: flex; /* Use flexbox for centering content */
-    justify-content: center; /* Center content horizontally */
-    align-items: center; /* Center content vertically */
-    color: rgb(148, 19, 19); /* Text color */
-    text-align: center; /* Center text */
-    margin: 20px 0; /* Space above and below the banner */
-    border-radius: 10px; /* Optional: rounded corners */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Optional: shadow for depth */
     background-image: url('Images A/d.png'); /* Replace with your image URL */
-    background-size: cover; /* Cover the entire area */
-    background-position: center; /* Center the image */
 }
 
-/* Blog Section */
-#blog {
-
-    color: rgb(14, 13, 13); /* Text color for better contrast */
-    padding: 40px 20px; /* Padding for the section */
+.banner-container-d {
+    background-image: url('Images A/green.png'); /* Replace with your image URL */
 }
 
-/* Testimonial Section */
-.testimonial-section {
-    background: #f5f5f5; /* Light background */
-    padding: 40px 20px;
-}
-
-.testimonial-container {
-    display: flex;
-    justify-content: space-around;
-    gap: 20px; /* Space between cards */
-}
-
-.testimonial-card {
-    background: white;
-    border-radius: 10px; /* Rounded corners */
-    width: 250px; /* Width of the card */
-    padding: 20px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-}
-
-.testimonial-avatar img {
-    border-radius: 50%; /* Makes the image circular */
-    width: 80px; /* Set the width of the image */
-    height: 80px; /* Set the height of the image */
-    object-fit: cover; /* Ensures the image covers the entire area without distortion */
-    border: 3px solid #fff; /* Optional: White border around the image */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Optional: Shadow for depth */
-}
-
-.testimonial-card h3 {
-    margin: 10px 0;
-}
-
-.testimonial-card p {
-    text-align: center;
-}
-
-/* FAQ Section */
-.faq-item {
-    margin-bottom: 15px; /* Space between FAQ items */
-}
-
-.faq-question {
-    cursor: pointer; /* Change cursor to pointer for clickable questions */
-    background: #161F36; /* Background color for questions */
-    color: #fbfcfd; /* Text color */
-    padding: 10px; /* Padding for questions */
-    border-radius: 5px; /* Rounded corners */
-    transition: background 0.3s ease; /* Transition for background color */
-}
-
-.faq-question:hover {
-    background: #F2EDE2; /* Darker shade on hover */
-}
-
-.faq-answer {
-    max-height: 0; /* Start hidden */
-    overflow: hidden; /* Hide overflow */
-    transition: max-height 0.5s ease, opacity 0.5s ease; /* Transition for height and opacity */
-    opacity: 0; /* Start hidden */
-    padding: 0 10px; /* Padding for answers */
-    background: #beb6b6; /* Light background for answers */
-    border-radius: 5px; /* Rounded corners */
-    color: #161F36;
-}
-
-.faq-answer.show {
-    max-height: 200px; /* Set a max height for the expanded state */
-    opacity: 1; /* Fully visible */
-    padding: 10px; /* Add padding when visible */
+    /* Blog Section */
+    #blog {
+        color: rgb(14, 13, 13);
+        padding: 40px 20px;
+        animation: fadeIn 0.5s ease; /* Fade-in effect */
+    }
     
-}
-
-
-
-/* Fade-in effect for sections */
-.fade-in {
-    opacity: 0; /* Start hidden */
-    transform: translateY(20px); /* Start slightly below */
-    transition: opacity 0.5s ease, transform 0.5s ease; /* Transition for smooth effect */
-}
-
-.visible {
-    opacity: 1; /* Fully visible */
-    transform: translateY(0); /* Move to original position */
-}
-
-/* Responsive Styles */
-@media (max-width: 768px) {
-    .nav-list {
-        display: none;
-        flex-direction: column;
-        width: 100%;
-        position: absolute;
-        top: 60px;
-        left: 0;
-        background: #161F36;
+    /* Testimonial Section */
+    .testimonial-section {
+        background: #f5f5f5;
+        padding: 40px 20px;
     }
-
-    .nav-list.active {
-        display: flex;
-    }
-
-    .menu-toggle {
-        display: flex;
-    }
-
-    .client-cards {
-        flex-direction: column; /* Stack cards vertically on small screens */
-        align-items: center;
-    }
-
-    .client-card {
-        width: 80%; /* Adjust width for smaller screens */
-        margin-bottom: 20px; /* Space between cards */
-    }
-
+    
     .testimonial-container {
-        flex-direction: column; /* Stack testimonial cards vertically on small screens */
-        align-items: center;
+        display: flex;
+        justify-content: space-around;
+        gap: 20px;
+        animation: fadeIn 0.5s ease; /* Fade-in effect for the container */
     }
-
+    
     .testimonial-card {
-        width: 80%; /* Adjust width for smaller screens */
-        margin-bottom: 20px; /* Space between cards */
+        background: white;
+        border-radius: 10px;
+        width: 250px;
+        padding: 20px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s; /* Smooth transition for hover effect */
     }
-
-    form {
-        max-width: 90%; /* Max width for the form on small screens */
+    
+    .testimonial-card:hover {
+        transform: translateY(-5px); /* Lift effect on hover */
     }
-}
-
-
-/*more*/
-@media (max-width: 768px) {
-    img {
-        max-width: 100%; /* Ensures images are responsive on smaller screens */
-        height: auto;    /* Maintains aspect ratio */
+    
+    .testimonial-avatar img {
+        border-radius: 50%;
+        width: 80px;
+        height: 80px;
+        object-fit: cover;
+        border: 3px solid #fff;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
     }
-}
-
-
-#subscribePopup {
-    display: none; /* Hidden by default */
-    position: fixed; /* Fixed position */
-    top: 50%; /* Position from the top */
-    left: 50%; /* Position from the left */
-    transform: translate(-50%, -50%); /* Center the pop-up */
-    background-color: white;
-    border: 1px solid #ccc;
-    padding: 30px; /* Padding for the pop-up */
-    width: 700px; /* Set a larger fixed width for the pop-up */
-    height: 300px; /* Set a fixed height for the pop-up */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Enhanced shadow for depth */
-    z-index: 1000; /* Ensure it appears above other content */
-    border-radius: 10px; /* Rounded corners */
-    background-image: linear-gradient(#F2EDE2,#BACBDB);
-}
-
-#subscribePopup h2 {
-    margin-bottom: 15px; /* Space below the heading */
-}
-
-#subscribePopup input {
-    width: calc(100% - 20px); /* Full width minus padding */
-    padding: 10px; /* Padding for the input */
-    margin-bottom: 10px; /* Space below the input */
-    border: 1px solid #ccc; /* Border for the input */
-    border-radius: 5px; /* Rounded corners for the input */
-}
-
-#subscribePopup button {
-    margin-top: 10px;
-    padding: 10px 15px; /* Padding for buttons */
-    border: none; /* Remove border */
-    border-radius: 5px; /* Rounded corners for buttons */
-    cursor: pointer; /* Pointer cursor on hover */
-}
-
-#subscribePopup button:hover {
-    background-color: #4CAF50; /* Change background on hover */
-    color: white; /* Change text color on hover */
-}
-
-footer {
-    background-color: #161F36; /* Footer background color */
-    color: white; /* Footer text color */
-    text-align: center; /* Center footer text */
-    padding: 20px; /* Padding for footer */
-}
-
-.footer-content {
-    display: flex; /* Use flexbox for layout */
-    justify-content: space-around; /* Space out columns */
-    max-width: 1200px; /* Max width for content */
-    margin: 0 auto; /* Center the content */
-}
-
-.footer-column {
-    flex: 1; /* Each column takes equal space */
-    padding: 10px; /* Padding for each column */
-}
-
-.footer-menu ul {
-    list-style-type: none; /* Remove bullet points */
-    padding: 0; /* Remove padding */
-}
-
-.footer-menu li {
-    margin: 5px 0; /* Space between menu items */
-}
-
-.footer-menu a {
-    color: rgb(250, 246, 246); /* Link color */
-    text-decoration: none; /* Remove underline */
-}
-
-.footer-menu a:hover {
-    text-decoration: underline; /* Underline on hover */
-}
-
-
-input[type="email"] {
-    width: 100%; /* Full width of the column */
-    max-width: 300px; /* Set a maximum width for the email input */
-    padding: 5px; /* Padding inside the input */
-    border: 1px solid #ccc; /* Border for the input */
-    border-radius: 5px; /* Rounded corners for the input */
-    margin-top: 10px; /* Space above the input */
-    background-color: #f9f9f9; /* Light background for the input */
-    color: #333; /* Text color inside the input */
-}
-
-textarea {
-    width: 100%; /* Full width of the column */
-    max-width: 300px; /* Set a maximum width for the text area */
-    height: 60px; /* Set a fixed height for the text area */
-    padding: 5px; /* Padding inside the text area */
-    border: 1px solid #ccc; /* Border for the text area */
-    border-radius: 5px; /* Rounded corners for the text area */
-    resize: none; /* Disable resizing */
-    margin-top: 10px; /* Space above the text area */
-    background-color: #f9f9f9; /* Light background for the text area */
-    color: #333; /* Text color inside the text area */
-}
-
-
-
-button {
-    margin-top: 10px; /* Space above the button */
-    padding: 10px 15px; /* Padding for the button */
-    border: none; /* Remove border */
-    border-radius: 5px; /* Rounded corners for the button */
-    background-color: #4CAF50; /* Button background color */
-    color: white; /* Button text color */
-    cursor: pointer; /* Pointer cursor on hover */
-}
-
-button:hover {
-    background-color: #45a049; /* Darker shade on hover */
-}
-
+    
+    .testimonial-card h3 {
+        margin: 10px 0;
+    }
+    
+    .testimonial-card p {
+        text-align: center;
+    }
+    
+    /* FAQ Section */
+    .faq-item {
+        margin-bottom: 15px;
+    }
+    
+    .faq-question {
+        cursor: pointer;
+        background: #161F36;
+        color: #fbfcfd;
+        padding: 10px;
+        border-radius: 5px;
+        transition: background 0.3s ease;
+    }
+    
+    .faq-question:hover {
+        background: #F2EDE2;
+    }
+    
+    .faq-answer {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.5s ease, opacity 0.5s ease;
+        opacity: 0;
+        padding: 0 10px;
+        background: #beb6b6;
+        border-radius: 5px;
+        color: #161F36;
+    }
+    
+    .faq-answer.show {
+        max-height: 200px; /* Set a max height for the expanded state */
+        opacity: 1; /* Fully visible */
+        padding: 10px; /* Add padding when visible */
+    }
+    
+    /* Fade-in effect for sections */
+    .fade-in {
+        opacity: 0; /* Start hidden */
+        transform: translateY(20px); /* Start slightly below */
+        transition: opacity 0.5s ease, transform 0.5s ease; /* Transition for smooth effect */
+    }
+    
+    .visible {
+        opacity: 1; /* Fully visible */
+        transform: translateY(0); /* Move to original position */
+    }
+    
+    /* Payment Methods Section */
+    .payment-methods {
+        padding: 40px 20px;
+        background-color: #f9f9f9;
+        text-align: center;
+        animation: fadeIn 0.5s ease; /* Fade-in effect */
+    }
+    
+    .payment-methods.payment-methods h2 {
+        font-size: 40px; /* Heading size */
+        margin-bottom: 20px; /* Space below the heading */
+    }
+    
+    .payment-options {
+        display: flex; /* Use flexbox for layout */
+        justify-content: space-around; /* Space out the payment options */
+        flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    }
+    
+    .payment-option {
+        flex: 1; /* Allow each option to take available space */
+        max-width: 200px; /* Set a maximum width for each option */
+        margin: 10px; /* Space between options */
+        text-align: center; /* Center text */
+        position: relative; /* Position relative for animation */
+        animation: fadeIn 0.5s ease; /* Fade-in effect for each payment option */
+    }
+    
+    .payment-icon {
+        width: 80px; /* Set a fixed width for the icons */
+        height: auto; /* Maintain aspect ratio */
+        margin-bottom: 10px; /* Space below the icon */
+        animation: bounce 1s infinite; /* Apply bounce animation */
+    }
+    
+    /* Keyframes for the bounce effect */
+    @keyframes bounce {
+        0%, 100% {
+            transform: translateY(0); /* Start and end at original position */
+        }
+        50% {
+            transform: translateY(-10px); /* Move up */
+        }
+    }
+    
+    /* Webinars and Team Building Section */
+    .webinars-team-building {
+        padding: 40px 20px; /* Padding for the section */
+        background-color: #F2EDE2; /* Light background color */
+        text-align: center; /* Center the text */
+        animation: fadeIn 0.5s ease; /* Fade-in effect */
+    }
+    
+    .webinars-team-building h2 {
+        font-size: 40px; /* Heading size */
+        margin-bottom: 20px; /* Space below the heading */
+    }
+    
+    .activity-options {
+        display: flex; /* Use flexbox for layout */
+        justify-content: space-around; /* Space out the activity options */
+        flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    }
+    
+    .activity-option {
+        flex: 1; /* Allow each option to take available space */
+        max-width: 300px; /* Set a maximum width for each option */
+        margin: 10px; /* Space between options */
+        text-align: center; /* Center text */
+        position: relative; /* Position relative for animation */
+        animation: fadeIn 0.5s ease; /* Apply fade-in animation */
+    }
+    
+    /* Keyframes for the fade-in effect */
+    @keyframes fadeIn {
+        from {
+            opacity: 0; /* Start invisible */
+            transform: translateY(20px); /* Start slightly below */
+        }
+        to {
+            opacity: 1; /* End fully visible */
+            transform: translateY(0); /* End at original position */
+        }
+    }
+    
+    .activity-icon {
+        width: 50px; /* Set the width of the icons */
+        height: auto; /* Maintain aspect ratio */
+        margin-bottom: 10px; /* Space between icon and text */
+    }
+    
+   /* Arrow Buttons */
 .arrow {
     position: fixed;
     bottom: 20px; /* Position from the bottom */
     right: 20px; /* Position from the right */
-    background-color:#080808; /* Semi-transparent background */
+    background-color: #080808; /* Semi-transparent background */
     color: white; /* Text color */
     border: none; /* No border */
     border-radius: 50%; /* Circular shape */
@@ -550,96 +433,141 @@ button:hover {
     background-color: #161F36; /* Darker background on hover */
 }
 
+/* Specific styles for the down arrow */
 #arrowDown {
     bottom: 80px; /* Position the down arrow above the up arrow */
+    /* Ensure the arrow is centered within the button */
+    display: flex; /* Use flexbox for centering */
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
 }
-
-/*payment methods here*/
-.payment-methods {
-    padding: 40px 20px; /* Padding for the section */
-    background-color: #f9f9f9; /* Light background color */
-    text-align: center; /* Center the text */
-}
-
-.payment-methods h2 {
-    font-size: 40px; /* Heading size */
-    margin-bottom: 20px; /* Space below the heading */
-}
-
-.payment-options {
-    display: flex; /* Use flexbox for layout */
-    justify-content: space-around; /* Space out the payment options */
-    flex-wrap: wrap; /* Allow wrapping on smaller screens */
-}
-
-.payment-option {
-    flex: 1; /* Allow each option to take available space */
-    max-width: 200px; /* Set a maximum width for each option */
-    margin: 10px; /* Space between options */
-    text-align: center; /* Center text */
-    position: relative; /* Position relative for animation */
-}
-
-.payment-icon {
-    width: 80px; /* Set a fixed width for the icons */
-    height: auto; /* Maintain aspect ratio */
-    margin-bottom: 10px; /* Space below the icon */
-    animation: moveIcon 3s linear infinite; /* Apply animation */
-}
-
-/* Keyframes for the continuous movement */
-@keyframes moveIcon {
-    0% {
-        transform: translateY(0); /* Start at original position */
+    
+    /* Footer */
+    footer {
+        background-color: #161F36; /* Footer background color */
+        color: white; /* Footer text color */
+        text-align: center; /* Center footer text */
+        padding: 20px; /* Padding for footer */
+        animation: fadeIn 0.5s ease; /* Fade-in effect for footer */
     }
-    50% {
-        transform: translateY(-10px); /* Move up */
+    
+    .footer-content {
+        display: flex; /* Use flexbox for layout */
+        justify-content: space-around; /* Space out columns */
+        max-width: 1200px; /* Max width .footer-content {
+            display: flex; /* Use flexbox for layout */
+            justify-content: space-around; /* Space out columns */
+            max-width: 1200px; /* Max width for content */
+            margin: 0 auto; /* Center the content */
+        }
+        
+        .footer-column {
+            flex: 1; /* Each column takes equal space */
+            padding: 10px; /* Padding for each column */
+        }
+        
+        .footer-menu ul {
+            list-style-type: none; /* Remove bullet points */
+            padding: 0; /* Remove padding */
+        }
+        
+        .footer-menu li {
+            margin: 5px 0; /* Space between menu items */
+        }
+        
+        .footer-menu a {
+            color: rgb(250, 246, 246); /* Link color */
+            text-decoration: none; /* Remove underline */
+        }
+        
+        .footer-menu a:hover {
+            text-decoration: underline; /* Underline on hover */
+        }
+        
+        /* Input and Textarea Styles */
+        input[type="email"],
+        textarea {
+            width: 100%; /* Full width of the column */
+            max-width: 300px; /* Set a maximum width for the input and textarea */
+            padding: 5px; /* Padding inside the input */
+            border: 1px solid #ccc; /* Border for the input */
+            border-radius: 5px; /* Rounded corners for the input */
+            margin-top: 10px; /* Space above the input */
+            background-color: #f9f9f9; /* Light background for the input */
+            color: #333; /* Text color inside the input */
+            transition: border-color 0.3s; /* Smooth transition for border color */
+        }
+        
+        input[type="email"]:focus,
+        textarea:focus {
+            border-color: #4CAF50; /* Change border color on focus */
+        }
+        
+        /* Button Styles */
+        button {
+            margin-top: 10px; /* Space above the button */
+            padding: 10px 15px; /* Padding for the button */
+            border: none; /* Remove border */
+            border-radius: 5px; /* Rounded corners for the button */
+            background-color: #4CAF50; /* Button background color */
+            color: white; /* Button text color */
+            cursor: pointer; /* Pointer cursor on hover */
+            transition: background-color 0.3s; /* Smooth background color transition */
+        }
+        
+        button:hover {
+            background-color: #45a049; /* Darker shade on hover */
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .nav-list {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                background: #161F36;
+            }
+        
+            .nav-list.active {
+                display: flex;
+            }
+        
+            .menu-toggle {
+                display: flex;
+            }
+        
+            .client-cards {
+                flex-direction: column; /* Stack cards vertically on small screens */
+                align-items: center;
+            }
+        
+            .client-card {
+                width: 80%; /* Adjust width for smaller screens */
+                margin-bottom: 20px; /* Space between cards */
+            }
+        
+            .testimonial-container {
+                flex-direction: column; /* Stack testimonial cards vertically on small screens */
+                align-items: center;
+            }
+        
+            .testimonial-card {
+                width: 80%; /* Adjust width for smaller screens */
+                margin-bottom: 20px; /* Space between cards */
+            }
+        
+            form {
+                max-width: 90%; /* Max width for the form on small screens */
+            }
+        }
+        
+       /* More Responsive Styles */
+@media (max-width: 768px) {
+    img {
+        max-width: 100%; /* Ensures images are responsive on smaller screens */
+        height: auto;    /* Maintains aspect ratio */
     }
-    100% {
-        transform: translateY(0); /* Return to original position */
-    }
-}
-
-/*webinnars start us*/
-.webinars-team-building {
-    padding: 40px 20px; /* Padding for the section */
-    background-color: #F2EDE2; /* Light background color */
-    text-align: center; /* Center the text */
-}
-
-.webinars-team-building h2 {
-    font-size: 40px; /* Heading size */
-    margin-bottom: 20px; /* Space below the heading */
-}
-
-.activity-options {
-    display: flex; /* Use flexbox for layout */
-    justify-content: space-around; /* Space out the activity options */
-    flex-wrap: wrap; /* Allow wrapping on smaller screens */
-}
-
-.activity-option {
-    flex: 1; /* Allow each option to take available space */
-    max-width: 300px; /* Set a maximum width for each option */
-    margin: 10px; /* Space between options */
-    text-align: center; /* Center text */
-    position: relative; /* Position relative for animation */
-    animation: fadeIn 0.5s ease-in-out; /* Apply fade-in animation */
-}
-
-/* Keyframes for the fade-in effect */
-@keyframes fadeIn {
-    from {
-        opacity: 0; /* Start invisible */
-        transform: translateY(20px); /* Start slightly below */
-    }
-    to {
-        opacity: 1; /* End fully visible */
-        transform: translateY(0); /* End at original position */
-    }
-}
-.activity-icon {
-    width: 50px; /* Set the width of the icons */
-    height: auto; /* Maintain aspect ratio */
-    margin-bottom: 10px; /* Space between icon and text */
 }
