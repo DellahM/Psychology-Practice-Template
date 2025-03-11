@@ -296,13 +296,86 @@ h2 {
 /*blogsectionbegin*/
 /* Section 1: Animated Title */
 .animated-title-section {
+    background: linear-gradient(to right, #007BFF, #00BFFF);
+    color: white;
     text-align: center;
+    padding: 50px 20px;
+    border-radius: 10px;
     margin-bottom: 40px;
+}
+
+.title-container {
+    max-width: 800px;
+    margin: auto;
 }
 
 .animated-title {
     font-size: 2.5rem;
-    animation: fadeIn 2s ease-in-out;
+    animation: fadeIn Up 2s ease-in-out;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    font-size: 1.5rem;
+    font-weight: 300;
+    margin-bottom: 20px;
+}
+
+.description {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+}
+
+.cta-button {
+    background-color: #FFD700; /* Gold color */
+    color: #333;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.cta-button:hover {
+    background-color: #FFC107; /* Darker gold on hover */
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.grid-item {
+    background: #f9f9f9;
+    padding: 15px;
+    text-align: center;
+}
+
+.grid-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+
+@media (max-width: 768px) {
+    .img-left, .img-right {
+        float: none;
+        display: block;
+        margin: 10px auto;
+    }
 }
 
 @keyframes fadeIn {
@@ -324,9 +397,9 @@ h2 {
 }
 
 .wrapped-image {
-    width: 300px;
+    width: 600px;
     height: auto;
-    margin-right: 60px;
+    margin-right: 40px;
     border-radius: 8px;
 }
 
