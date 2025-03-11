@@ -129,19 +129,37 @@
 
 
 <!--blogsection here-->
-        <section id="blog" class="fade-in">
-            <h2>Latest Blog Posts</h2>
-            <div class="blog-posts">
-                <article>
-                    <h3>Understanding Anxiety</h3>
-                    <p>Learn about the causes and treatments for anxiety disorders.</p>
-                </article>
-                <article>
-                    <h3>Benefits of Therapy</h3>
-                    <p>Discover how therapy can improve your mental health and well-being.</p>
-                </article>
-            </div>
-        </section>
+       
+<div class="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item">
+            <img src="https://via.placeholder.com/300x200" alt="Blog Post 1">
+            <h3>Blog Post Title 1</h3>
+            <p>Brief description of the blog post content goes here. It should be engaging and informative.</p>
+        </div>
+        <div class="carousel-item">
+            <img src="https://via.placeholder.com/300x200" alt="Blog Post 2">
+            <h3>Blog Post Title 2</h3>
+            <p>Brief description of the blog post content goes here. It should be engaging and informative.</p>
+        </div>
+        <div class="carousel-item">
+            <img src="https://via.placeholder.com/300x200" alt="Blog Post 3">
+            <h3>Blog Post Title 3</h3>
+            <p>Brief description of the blog post content goes here. It should be engaging and informative.</p>
+        </div>
+        <div class="carousel-item">
+            <img src="https://via.placeholder.com/300x200" alt="Blog Post 4">
+            <h3>Blog Post Title 4</h3>
+            <p>Brief description of the blog post content goes here. It should be engaging and informative.</p>
+        </div>
+        <div class="carousel-item">
+            <img src="https://via.placeholder.com/300x200" alt="Blog Post 5">
+            <h3>Blog Post Title 5</h3>
+            <p>Brief description of the blog post content goes here. It should be engaging and informative.</p>
+        </div>
+    </div>
+</div>
+<!--blogsectionend-->
 
   <div class="banner-container-d">  </div>
 
@@ -173,7 +191,24 @@
             </div>
         </section>
 
-        
+      <!--popup  mail subscribe begin-->  
+      <button class="button" onclick="openModal()">Subscribe</button>
+
+      <!-- Subscription Modal -->
+      <div id="subscribeModal" class="modal">
+          <div class="modal-content">
+              <span class="close" onclick="closeModal()">&times;</span>
+              <h2>Subscribe to Our Newsletter</h2>
+              <p>Get the latest updates and offers directly in your inbox.</p>
+              <input type="email" id="email" placeholder="Enter your email" required>
+              <div>
+                  <button onclick="confirmSubscription()">Yes, Subscribe</button>
+                  <button class="cancel" onclick="closeModal()">Cancel</button>
+              </div>
+          </div>
+      </div>
+<!--popup  mail subscribe end-->
+
 
 <!-- Payment methods here -->
 <section id="payment-methods" class="payment-methods fade-in">
@@ -214,12 +249,7 @@
                 <h3 class="faq-question">Do you accept insurance?</h3>
                 <p class="faq-answer">Yes, we accept various insurance plans. Please contact us for more details.</p>
             </div>
-            <div id="subscribePopup" style="display: none;"> <!-- Initially hidden -->
-                <h2>Subscribe to Our Newsletter</h2>
-                <input type="email" placeholder="Enter your email" required>
-                <button onclick="subscribe()">Subscribe</button>
-                <button onclick="closePopup()">Close</button>
-            </div>
+           
 
         </section>
 

@@ -221,13 +221,239 @@ h2 {
     background-image: url('Images A/green.png'); /* Replace with your image URL */
 }
 
-    /* Blog Section */
+    /* Blog Section front page */
     #blog {
         color: rgb(14, 13, 13);
         padding: 40px 20px;
         animation: fadeIn 0.5s ease; /* Fade-in effect */
     }
+   
+
+    .latest-articles {
+        padding: 40px 20px;
+        background-color: #f9f9f9;
+        text-align: center;
+    }
     
+    .latest-articles h2 {
+        font-size: 2rem;
+        margin-bottom: 20px;
+        color: #333;
+    }
+    
+    .carousel {
+        display: flex;
+        overflow: hidden;
+        position: relative;
+    }
+    
+    .carousel-inner {
+        display: flex;
+        transition: transform 0.5s ease;
+    }
+    
+    .carousel-item {
+        min-width: 300px; /* Fixed width for each article */
+        margin: 0 10px; /* Space between items */
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        padding: 15px;
+        text-align: left;
+    }
+    
+    .carousel-item img {
+        width: 100%;
+        border-radius: 10px 10px 0 0;
+    }
+    
+    .carousel-item h3 {
+        margin: 15px 0 10px;
+        color: #007BFF;
+    }
+    
+    .carousel-item p {
+        color: #555;
+        margin-bottom: 15px;
+    }
+    
+    .carousel-item .read-more {
+        display: inline-block;
+        background-color: #007BFF;
+        color: white;
+        padding: 10px 15px;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background-color 0.3s;
+    }
+    
+    .carousel-item .read-more:hover {
+        background-color: #0056b3;
+    }
+
+/*blogsectionfrontageend*/
+
+/*blogsectionbegin*/
+/* Section 1: Animated Title */
+.animated-title-section {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.animated-title {
+    font-size: 2.5rem;
+    animation: fadeIn 2s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Section 2: Image Wrapped Text */
+.image-text-section {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 40px;
+}
+
+.wrapped-image {
+    width: 300px;
+    height: auto;
+    margin-right: 60px;
+    border-radius: 8px;
+}
+
+.text-content {
+    max-width: 600px;
+}
+
+/* Section 3: Video Section */
+.video-section {
+    text-align: center;
+}
+
+.video-section h2 {
+    margin-bottom: 20px;
+}
+
+/*blogpage sectionsend*/
+
+
+
+
+    /*blogrollstartshere*/
+    
+    .carousel {
+        display: flex;
+        overflow: hidden;
+        width: 100%;
+        position: relative;
+    }
+    
+    .carousel-inner {
+        display: flex;
+        transition: transform 0.5s ease;
+    }
+    
+    .carousel-item {
+        min-width: 33.33%; /* Show 3 articles at a time */
+        box-sizing: border-box;
+        padding: 10px;
+        background: white;
+        border-radius: 8px;
+        margin-right: 10px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    .carousel-item img {
+        width: 100%;
+        border-radius: 8px 8px 0 0;
+    }
+    
+    .carousel-item h3 {
+        margin: 10px 0;
+    }
+    
+    .carousel-item p {
+        color: #666;
+    }
+
+
+
+    /*blogrollendhere*/
+
+
+ /*popup start here*/
+
+  .modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1000; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    background-color: rgba(0, 0, 0, 0.7); /* Black background with transparency */
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    max-width: 400px;
+    margin: auto;
+}
+
+.modal h2 {
+    margin: 0 0 10px;
+}
+
+.modal input[type="email"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.modal button {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.modal button.cancel {
+    background-color: red;
+}
+
+.modal button:hover {
+    background-color: #0056b3;
+}
+
+.close {
+    cursor: pointer;
+    font-size: 20px;
+    position: absolute;
+    right: 20px;
+    top: 15px;
+}
+/*popup end here*/
+
     /* Testimonial Section */
     .testimonial-section {
         background: #f5f5f5;
