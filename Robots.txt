@@ -1,0 +1,27 @@
+User-agent: *
+Disallow: /private/
+Disallow: /tmp/
+Disallow: /cgi-bin/
+Disallow: /admin/
+Disallow: /backup/
+Disallow: /login/
+Allow: /
+
+# Optional: block specific bad bots by name
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+User-agent: BLEXBot
+Disallow: /
+
+# Sitemap (helps search engines crawl properly)
+Sitemap: https://www.abytherapy.co.ke/sitemap.xml
