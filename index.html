@@ -1,297 +1,1519 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-   <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ABY THERAPY - Psychology Practice</title>
-    <link rel="stylesheet" href="style.css">
-    <head>
-        <!-- Other head elements -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    </head>
+    <title>ABY Therapy | Mental Wellness</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --dark-charcoal: #3E3E43;
+            --light-pink: #E1D1D7;
+            --muted-mauve: #856B7D;
+            --deep-blue-gray: #4F5980;
+            --light-gray: #f8f8f8;
+            --text-dark: #333333;
+            --text-light: #ffffff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-gray);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.97);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--deep-blue-gray);
+        }
+        
+        .logo span {
+            color: var(--muted-mauve);
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--dark-charcoal);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-menu a:hover {
+            color: var(--muted-mauve);
+        }
+        
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--muted-mauve);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, var(--deep-blue-gray) 0%, var(--dark-charcoal) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 70px;
+        }
+        
+        .hero-content {
+            text-align: center;
+            color: var(--text-light);
+            z-index: 2;
+            max-width: 800px;
+            padding: 0 2rem;
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            color: var(--light-pink);
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: var(--muted-mauve);
+            color: var(--text-light);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid var(--muted-mauve);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 0 10px;
+        }
+        
+        .cta-button:hover {
+            background: transparent;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .cta-button.secondary {
+            background: transparent;
+            border-color: var(--text-light);
+        }
+        
+        .cta-button.secondary:hover {
+            background: rgba(255,255,255,0.1);
+        }
+        
+        /* Floating Animation */
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Section Styles */
+        .section {
+            padding: 5rem 0;
+            position: relative;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            font-weight: 700;
+            color: var(--deep-blue-gray);
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--muted-mauve);
+            border-radius: 2px;
+        }
+        
+        /* Get Better Faster Section */
+        .get-better {
+            background: var(--light-gray);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(133, 107, 125, 0.1);
+            text-align: center;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(79, 89, 128, 0.15);
+            border-color: rgba(133, 107, 125, 0.3);
+        }
+        
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--light-pink);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+            color: var(--muted-mauve);
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover .feature-icon {
+            background: var(--muted-mauve);
+            color: white;
+            transform: scale(1.1);
+        }
+        
+        /* Founder Section */
+        .founder-message {
+            background: linear-gradient(to right, var(--dark-charcoal) 0%, #4a4a50 100%);
+            color: var(--text-light);
+            padding: 6rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .founder-content {
+            display: flex;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .founder-image {
+            flex: 1;
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+        
+        .founder-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(79, 89, 128, 0.5) 0%, rgba(133, 107, 125, 0.5) 100%);
+        }
+        
+        .founder-text {
+            flex: 2;
+        }
+        
+        .founder-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-light);
+        }
+        
+        .founder-credentials {
+            display: flex;
+            gap: 1rem;
+            margin: 1.5rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .credential-badge {
+            background: rgba(225, 209, 215, 0.15);
+            padding: 0.5rem 1.2rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(225, 209, 215, 0.3);
+            backdrop-filter: blur(10px);
+            color: var(--text-light);
+        }
+        
+        .founder-quote {
+            font-size: 1.2rem;
+            font-style: italic;
+            margin: 2rem 0;
+            padding-left: 2rem;
+            border-left: 4px solid var(--muted-mauve);
+            position: relative;
+            color: var(--light-pink);
+        }
+        
+        /* How It Works Section */
+        .how-it-works {
+            background: white;
+        }
+        
+        .steps-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 3rem;
+            position: relative;
+        }
+        
+        .steps-container::before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 10%;
+            width: 80%;
+            height: 3px;
+            background: var(--light-pink);
+            z-index: 1;
+        }
+        
+        .step {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            width: 22%;
+        }
+        
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background: var(--deep-blue-gray);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 1.8rem;
+            color: var(--text-light);
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(79, 89, 128, 0.3);
+        }
+        
+        /* What We Treat Section */
+        .what-we-treat {
+            background: linear-gradient(to bottom, #f8f8f8 0%, #f0f0f0 100%);
+        }
+        
+        .treatment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .treatment-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border-top: 4px solid transparent;
+            background-clip: padding-box;
+        }
+        
+        .treatment-item:hover {
+            transform: translateY(-5px);
+            border-top-color: var(--muted-mauve);
+            box-shadow: 0 10px 30px rgba(133, 107, 125, 0.15);
+        }
+        
+        .treatment-icon {
+            font-size: 2.5rem;
+            color: var(--deep-blue-gray);
+            margin-bottom: 1rem;
+        }
+        
+        /* Our Providers Section */
+        .our-providers {
+            background: linear-gradient(135deg, var(--dark-charcoal) 0%, var(--deep-blue-gray) 100%);
+            color: var(--text-light);
+            text-align: center;
+            padding: 5rem 0;
+        }
+        
+        .providers-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .license-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            margin-top: 2rem;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: var(--text-light);
+        }
+        
+        /* Testimonials Section */
+        .testimonials {
+            background: white;
+        }
+        
+        .testimonial-slider {
+            display: flex;
+            gap: 2rem;
+            overflow-x: auto;
+            padding: 2rem 0;
+            scroll-snap-type: x mandatory;
+        }
+        
+        .testimonial-card {
+            min-width: 300px;
+            background: var(--light-gray);
+            padding: 2rem;
+            border-radius: 15px;
+            scroll-snap-align: start;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+        
+        .stars {
+            color: #fbbf24;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .client-info {
+            display: flex;
+            align-items: center;
+            margin-top: 1.5rem;
+        }
+        
+        .client-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--muted-mauve);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+            font-size: 1.2rem;
+            margin-right: 1rem;
+        }
+        
+        /* Webinars Section */
+        .webinars {
+            background: var(--light-gray);
+        }
+        
+        .webinar-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .webinar-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+        
+        .webinar-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(79, 89, 128, 0.15);
+        }
+        
+        .webinar-image {
+            width: 100%;
+            height: 200px;
+            background: var(--deep-blue-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+            font-size: 2rem;
+        }
+        
+        .webinar-content {
+            padding: 1.5rem;
+        }
+        
+        /* FAQ Section */
+        .faq {
+            background: white;
+        }
+        
+        .faq-item {
+            border-bottom: 1px solid #e5e7eb;
+            padding: 1.5rem 0;
+        }
+        
+        .faq-question {
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.2rem;
+            color: var(--deep-blue-gray);
+        }
+        
+        .faq-answer {
+            margin-top: 1rem;
+            padding-left: 1rem;
+            color: var(--dark-charcoal);
+            display: none;
+        }
+        
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+        
+        /* Teletherapy Confidence Section */
+        .teletherapy-confidence {
+            background: linear-gradient(135deg, var(--light-gray) 0%, #e7e8ef 100%);
+            padding: 5rem 0;
+        }
+        
+        .confidence-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .confidence-item {
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .confidence-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--muted-mauve);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            color: var(--text-light);
+            font-size: 2rem;
+        }
+        
+        /* Blog Highlight Section */
+        .blog-highlight {
+            background: white;
+        }
+        
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .blog-card {
+            background: var(--light-gray);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+        
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(79, 89, 128, 0.15);
+        }
+        
+        .blog-image {
+            width: 100%;
+            height: 200px;
+            background: var(--deep-blue-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+        }
+        
+        .blog-content {
+            padding: 1.5rem;
+        }
+        
+        /* Banner Section */
+        .banner {
+            background: linear-gradient(135deg, var(--deep-blue-gray) 0%, var(--dark-charcoal) 100%);
+            color: var(--text-light);
+            text-align: center;
+            padding: 4rem 0;
+        }
+        
+        .banner h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        
+        /* Footer */
+        .footer {
+            background: var(--dark-charcoal);
+            color: #e0e1dd;
+            padding: 4rem 0 1rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 1.5rem;
+            color: var(--light-pink);
+            font-size: 1.4rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--muted-mauve);
+        }
+        
+        .footer-section p, .footer-section li {
+            color: #e0e1dd;
+            margin-bottom: 0.8rem;
+            line-height: 1.7;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #9ca3af;
+            font-size: 0.9rem;
+        }
+        
+        .footer-credits {
+            margin-top: 1rem;
+        }
+        
+        .footer-credits a {
+            color: var(--light-pink);
+            text-decoration: none;
+        }
+        
+        .footer-section a {
+            color: #e0e1dd;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: block;
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-section a:hover {
+            color: var(--light-pink);
+            transform: translateX(5px);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background: var(--muted-mauve);
+            transform: translateY(-3px);
+        }
+        
+        /* Animations */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+        
+        .animate-on-scroll.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .nav-menu {
+                gap: 1.2rem;
+            }
+            
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .steps-container {
+                flex-wrap: wrap;
+                gap: 2rem;
+            }
+            
+            .steps-container::before {
+                display: none;
+            }
+            
+            .step {
+                width: 45%;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .founder-content {
+                flex-direction: column;
+            }
+            
+            .step {
+                width: 100%;
+            }
+            
+            .cta-buttons {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .cta-button {
+                margin: 10px 0;
+            }
+        }
+        
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: transparent;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--deep-blue-gray);
+            cursor: pointer;
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .nav-menu {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                align-items: center;
+                padding: 2rem 0;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+                transform: translateY(-150%);
+                transition: transform 0.4s ease;
+            }
+            
+            .nav-menu.active {
+                transform: translateY(0);
+            }
+        }
+
+/* New Insurance Section Styles */
+        .insurance-section {
+            background: linear-gradient(135deg, #f0f5ff 0%, #e6f0ff 100%);
+            padding: 5rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .insurance-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            text-align: center;
+        }
+        
+        .insurance-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .insurance-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border-left: 4px solid var(--muted-mauve);
+        }
+        
+        .insurance-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(79, 89, 128, 0.15);
+        }
+        
+        .insurance-icon {
+            font-size: 2.5rem;
+            color: var(--deep-blue-gray);
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        
+        .insurance-icon::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background: var(--muted-mauve);
+        }
+        
+        .insurance-card h3 {
+            margin-bottom: 1rem;
+            color: var(--deep-blue-gray);
+        }
+        
+        .insurance-partners {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 12px;
+        }
+        
+        .insurance-logo {
+            width: 120px;
+            height: 60px;
+            background: white;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            padding: 0.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .insurance-logo:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(79, 89, 128, 0.15);
+        }
+        
+        .insurance-cta {
+            margin-top: 2.5rem;
+        }
+        
+        .insurance-cta .cta-button {
+            background: var(--deep-blue-gray);
+            border-color: var(--deep-blue-gray);
+        }
+        
+        .insurance-cta .cta-button:hover {
+            background: transparent;
+            color: var(--deep-blue-gray);
+        }
+
+
+
+
+
+    </style>
 </head>
 <body>
-    <header>
-        <nav class="navbar">
-            <div class="logo">ABY THERAPY</div>
-            <div class="menu-toggle" onclick="toggleMenu()">
-                <div class="bar"></div>
-                <div class="bar"></div>
-                <div class="bar"></div>
-            </div>
-
-            <ul class="nav-list">
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">ABY <span>Therapy</span></div>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-menu">
                 <li><a href="index.html">Home</a></li>
-                <li><a href="about-us.html">About Us</a></li>
-                <!--<li><a href="clients.html">Clients</a></li>-->
-                <li><a href="resources.html">Resources</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="services.html">Services</a></li>
                 <li><a href="blog.html">Blog</a></li>
-               <!-- <li><a href="faq.html">FAQ</a></li>-->
-               <!--<li><a href="contact.html">Contact</a></li>-->
+                <li><a href="join.html">Join Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="booking.html">Booking</a></li>
+                <li><a href="webinars.html">Webinars</a></li>
             </ul>
-       </nav>
-    </header>
+        </div>
+    </nav>
 
-    <main>
-        <section class="hero">
-            <h1>Welcome</h1>
-            <p>Your mental health is our priority. We provide professional therapy services tailored to your needs.</p>
-            <a href="#contact" class="btn">Book A Consultation</a>
-        </section>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content floating">
+            <h1>A Better You Therapy</h1>
+            <p>Professional mental health care that fits your life. Connect with licensed therapists from the comfort of your home.</p>
+            <div class="cta-buttons">
+                <a href="#booking" class="cta-button">Start Your Journey</a>
+                <a href="#services" class="cta-button secondary">Our Services</a>
+            </div>
+        </div>
+    </section>
 
-        <section class="about-section">
-            <div class="about-content">
-                <div class="about-text">
-                    <h2>About Us</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                    <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                    <button class="read-more" onclick="window.location.href='about-us.html'">Read More</button>
+    <!-- Get Better Faster Section -->
+    <section class="section get-better animate-on-scroll">
+        <div class="container">
+            <h2 class="section-title">Get Better Faster</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-bolt"></i></div>
+                    <h3>Quick Matching</h3>
+                    <p>Get matched with the right therapist in under 24 hours based on your specific needs and preferences.</p>
                 </div>
-                <div class="about-image">
-                    <img src="Images B/Image C.png" alt="About Us Image" class="pop-out" onclick="openImagePopup()" />
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-laptop"></i></div>
+                    <h3>Flexible Sessions</h3>
+                    <p>Choose from video, phone, or messaging sessions that fit your schedule and comfort level.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-headset"></i></div>
+                    <h3>Immediate Support</h3>
+                    <p>Access crisis support and immediate help when you need it most, 24/7 availability.</p>
                 </div>
             </div>
-        </section>
-       
-      
-       
-       <!-- /clients section/-->
-        <section id="clients" class="fade-in">
-            <h2>Conditions We Work With</h2>
-            <div class="client-cards">
-                <a href="blog-individuals.html" class="client-card">
-                    <i class="fas fa-user"></i> <!-- Icon for Individuals -->
-                    <h3>Individuals</h3>
-                    <p>We help individuals seeking personal growth and mental wellness.</p>
-                </a>
-                <a href="blog-families.html" class="client-card">
-                    <i class="fas fa-users"></i> <!-- Icon for Families -->
-                    <h3>Families</h3>
-                    <p>Supporting families to improve communication and resolve conflicts.</p>
-                </a>
-                <a href="blog-groups.html" class="client-card">
-                    <i class="fas fa-users-cog"></i> <!-- Icon for Groups -->
-                    <h3>Groups</h3>
-                    <p>Facilitating group therapy sessions for shared experiences and healing.</p>
-                </a>
-                <a href="blog-couples.html" class="client-card">
-                    <i class="fas fa-heart"></i> <!-- Icon for Couples -->
-                    <h3>Couples</h3>
-                    <p>Helping couples strengthen their relationships and resolve issues.</p>
-                </a>
-                <a href="blog-children.html" class="client-card">
-                    <i class="fas fa-child"></i> <!-- Icon for Children -->
-                    <h3>Children</h3>
-                    <p>Providing support for children to navigate their emotions and challenges.</p>
-                </a>
-                <a href="blog-corporate.html" class="client-card">
-                    <i class="fas fa-briefcase"></i> <!-- Icon for Corporate -->
-                    <h3>Corporate</h3>
-                    <p>Offering workshops and support for workplace mental health and well-being.</p>
-                </a>
+        </div>
+    </section>
+
+    <!-- What We Offer Section -->
+    <section id="services" class="section what-we-offer animate-on-scroll">
+        <div class="container">
+            <h2 class="section-title">What We Offer</h2>
+            <p class="text-center" style="max-width: 800px; margin: 0 auto 3rem; font-size: 1.1rem;">Our comprehensive mental health services are designed to support you at every step of your journey. We provide evidence-based treatments delivered by licensed professionals who understand your unique needs.</p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-user"></i></div>
+                    <h3>Individual Therapy</h3>
+                    <p>One-on-one sessions tailored to your personal mental health goals and challenges.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-heart"></i></div>
+                    <h3>Couples Counseling</h3>
+                    <p>Strengthen your relationship with professional guidance and communication strategies.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-users"></i></div>
+                    <h3>Group Therapy</h3>
+                    <p>Supportive group sessions for shared experiences and collective healing.</p>
+                </div>
             </div>
-        </section>
-     
-        <div class="banner-container-a">
         </div>
-        
-        <!--   Resource section    -->
-        <section id="resources" class="fade-in">
-            <h2>Resources</h2>
-            <p>Explore our collection of articles, videos, and tools to support your mental health journey.</p>
-            <ul>
-                <li><a href="#">Article: Coping with Stress</a></li>
-                <li><a href="#">Video: Mindfulness Techniques</a></li>
-                <li><a href="#">Tool: Mood Tracker</a></li>
-            </ul>
-        </section >  
-        
-        <!--end of resources-->
+    </section>
 
-        <div class="banner-container-b">
-     </div>
-<!-- Webinars and Team Building Section -->
-<section id="webinars-team-building" class="webinars-team-building fade-in">
-        <div class="activity-option">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6c/Psi2.svg" alt="Team Building Icon" class="activity-icon">
-            <h3>Team Building Workshops</h3>
-            <p>Participate in fun team-building activities that foster collaboration and creativity.</p>
-        </div>
-       
-    </div>
-</section>
-
-<!-- Webinars and Team Building Section End-->
-
-<div class="banner-container-c"> </div>   
-
-
-<!--blogsection here-->
-       
-<div class="carousel">
-    <div class="carousel-inner">
-        <div class="carousel-item">
-            <img src="https://via.placeholder.com/300x200" alt="Blog Post 1">
-            <h3>Blog Post Title 1</h3>
-            <p>Brief description of the blog post content goes here. It should be engaging and informative.</p>
-        </div>
-        <div class="carousel-item">
-            <img src="https://via.placeholder.com/300x200" alt="Blog Post 2">
-            <h3>Blog Post Title 2</h3>
-            <p>Brief description of the blog post content goes here. It should be engaging and informative.</p>
-        </div>
-        <div class="carousel-item">
-            <img src="https://via.placeholder.com/300x200" alt="Blog Post 3">
-            <h3>Blog Post Title 3</h3>
-            <p>Brief description of the blog post content goes here. It should be engaging and informative.</p>
-        </div>
-        <div class="carousel-item">
-            <img src="https://via.placeholder.com/300x200" alt="Blog Post 4">
-            <h3>Blog Post Title 4</h3>
-            <p>Brief description of the blog post content goes here. It should be engaging and informative.</p>
-        </div>
-        <div class="carousel-item">
-            <img src="https://via.placeholder.com/300x200" alt="Blog Post 5">
-            <h3>Blog Post Title 5</h3>
-            <p>Brief description of the blog post content goes here. It should be engaging and informative.</p>
-        </div>
-    </div>
-</div>
-<!--blogsectionend-->
-
-  <div class="banner-container-d">  </div>
-
-   <!--testimonials here-->    
-        <section class="testimonial-section fade-in">
-            <h2>Testimonials</h2>
-            <div class="testimonial-container">
-                <div class="testimonial-card">
-                    <div class="testimonial-avatar">
-                        <img src="Images/318787512_823831605519735_4182961940334464716_n.jpg" alt="Client 1">
+    <!-- Founder Message Section -->
+    <section class="section founder-message animate-on-scroll">
+        <div class="container">
+            <div class="founder-content">
+                <div class="founder-image">
+                    <div style="background: var(--muted-mauve); height: 100%; display: flex; align-items: center; justify-content: center;">
+                        <i class="fas fa-user-md" style="font-size: 8rem; color: var(--light-pink);"></i>
                     </div>
-                    <h3>Marion</h3>
-                    <p>"This service was amazing! Highly recommend."</p>
+                </div>
+                <div class="founder-text">
+                    <h2>A Message from Our Founder</h2>
+                    <div class="founder-credentials">
+                        <span class="credential-badge">Licensed Psychologist</span>
+                        <span class="credential-badge">Tech Entrepreneur</span>
+                        <span class="credential-badge">Mental Health Advocate</span>
+                    </div>
+                    <div class="founder-quote">
+                        Mental health care should be accessible, affordable, and personalized. That's why I founded ABY Therapy - to bridge the gap between traditional therapy and modern technology, making quality mental health support available to everyone, everywhere.
+                    </div>
+                    <p>Hi, I'm <strong>Dellah Miheso</strong>, and my journey in psychology began with a simple belief: everyone deserves access to quality mental health care. As both a licensed psychologist and tech entrepreneur, I've witnessed firsthand how technology can transform lives and break down barriers to essential services.</p>
+                    <p>ABY Therapy represents the culmination of years of clinical experience, technological innovation, and a deep commitment to mental wellness. We're not just another therapy platform - we're a movement toward making mental health care more human, more accessible, and more effective.</p>
+                    <p style="margin-top: 2rem;"><em>- Dellah Miheso, Founder & CEO</em></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="section how-it-works animate-on-scroll">
+        <div class="container">
+            <h2 class="section-title">How It Works</h2>
+            <div class="steps-container">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Take Assessment</h3>
+                    <p>Complete our brief questionnaire to help us understand your needs</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Get Matched</h3>
+                    <p>We'll connect you with a licensed therapist who specializes in your area</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Start Sessions</h3>
+                    <p>Begin your therapy journey with flexible scheduling options</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Track Progress</h3>
+                    <p>Monitor your improvement with regular check-ins and assessments</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What We Treat Section -->
+    <section class="section what-we-treat animate-on-scroll">
+        <div class="container">
+            <h2 class="section-title">What We Treat</h2>
+            <div class="treatment-grid">
+                <div class="treatment-item">
+                    <div class="treatment-icon"><i class="fas fa-cloud"></i></div>
+                    <h3>Depression</h3>
+                    <p>Comprehensive treatment for various forms of depression using evidence-based approaches.</p>
+                </div>
+                <div class="treatment-item">
+                    <div class="treatment-icon"><i class="fas fa-heartbeat"></i></div>
+                    <h3>Anxiety Disorders</h3>
+                    <p>Specialized care for anxiety, panic disorders, phobias, and stress-related conditions.</p>
+                </div>
+                <div class="treatment-item">
+                    <div class="treatment-icon"><i class="fas fa-brain"></i></div>
+                    <h3>Trauma & PTSD</h3>
+                    <p>Trauma-informed therapy to help process and heal from difficult life experiences.</p>
+                </div>
+                <div class="treatment-item">
+                    <div class="treatment-icon"><i class="fas fa-people-arrows"></i></div>
+                    <h3>Relationship Issues</h3>
+                    <p>Couples counseling and family therapy to improve communication and relationships.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Providers Section -->
+    <section class="section our-providers animate-on-scroll">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">Our Providers</h2>
+            <div class="providers-content">
+                <p style="font-size: 1.2rem; margin-bottom: 2rem;">Our team consists of highly qualified, licensed mental health professionals who are passionate about helping you achieve your wellness goals. Every therapist on our platform meets rigorous standards for education, experience, and ethical practice.</p>
+                <div class="license-badge">
+                    <strong>✓ Registered & Licensed by the Ministry of Health</strong>
+                </div>
+                <p style="margin-top: 2rem;">All our therapists are vetted, certified, and continuously supervised to ensure you receive the highest quality of care.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="section testimonials animate-on-scroll">
+        <div class="container">
+            <h2 class="section-title">What Our Clients Say</h2>
+            <div class="testimonial-slider">
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p>"ABY Therapy changed my life. The convenience of online sessions combined with the expertise of my therapist made all the difference in my recovery journey."</p>
+                    <div class="client-info">
+                        <div class="client-avatar"><i class="fas fa-user"></i></div>
+                        <div>
+                            <strong>Sarah M.</strong>
+                            <p>Client for 8 months</p>
+                        </div>
+                    </div>
                 </div>
                 <div class="testimonial-card">
-                    <div class="testimonial-avatar">
-                        <img src="Images/318787512_823831605519735_4182961940334464716_n.jpg" alt="Client 2">
+                    <div class="stars">★★★★★</div>
+                    <p>"I was skeptical about online therapy, but the platform is so easy to use and my therapist is incredibly supportive. I've made more progress in 3 months than I did in years."</p>
+                    <div class="client-info">
+                        <div class="client-avatar"><i class="fas fa-user"></i></div>
+                        <div>
+                            <strong>John D.</strong>
+                            <p>Client for 6 months</p>
+                        </div>
                     </div>
-                    <h3>Calenda</h3>
-                    <p>"A life-changing experience. Thank you!"</p>
                 </div>
                 <div class="testimonial-card">
-                    <div class="testimonial-avatar">
-                        <img src="Images/bandmember.jpg " alt="Client 3">
+                    <div class="stars">★★★★★</div>
+                    <p>"The matching process was perfect - I was connected with someone who truly understands my situation. Highly recommend ABY Therapy to anyone seeking help."</p>
+                    <div class="client-info">
+                        <div class="client-avatar"><i class="fas fa-user"></i></div>
+                        <div>
+                            <strong>Maria K.</strong>
+                            <p>Client for 1 year</p>
+                        </div>
                     </div>
-                    <h3>Maurice</h3>
-                    <p>"Professional and supportive throughout the process."</p>
                 </div>
             </div>
-        </section>
-
-      <!--popup  mail subscribe begin-->  
-      <button class="button" onclick="openModal()">Subscribe</button>
-
-      <!-- Subscription Modal -->
-      <div id="subscribeModal" class="modal">
-          <div class="modal-content">
-              <span class="close" onclick="closeModal()">&times;</span>
-              <h2>Subscribe to Our Newsletter</h2>
-              <p>Get the latest updates and offers directly in your inbox.</p>
-              <input type="email" id="email" placeholder="Enter your email" required>
-              <div>
-                  <button onclick="confirmSubscription()">Yes, Subscribe</button>
-                  <button class="cancel" onclick="closeModal()">Cancel</button>
-              </div>
-          </div>
-      </div>
-<!--popup  mail subscribe end-->
-
-
-<!-- Payment methods here -->
-<section id="payment-methods" class="payment-methods fade-in">
-    <h2>Payment Methods</h2>
-    <div class="payment-options">
-        <div class="payment-option">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal" class="payment-icon">
-            <p>PayPal</p>
         </div>
-        <div class="payment-option">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/0/0b/M-PESA.png" alt="M-Pesa" class="payment-icon">
-            <p>M-Pesa</p>
-        </div>
-        <div class="payment-option">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Bank Transfer" class="payment-icon">
-            <p>Bank Transfer</p>
-        </div>
-    </div>
-</section>
+    </section>
 
-
-        <!--faqs start here-->
-        <section id="faq" class="fade-in">
-            <h2>Frequently Asked Questions</h2>
-            <div class="faq-item">
-                <h3 class="faq-question">What types of therapy do you offer?</h3>
-                <p class="faq-answer">We offer individual, group, and family therapy sessions tailored to your needs.</p>
+    <!-- Webinars Section -->
+    <section id="webinars" class="section webinars animate-on-scroll">
+        <div class="container">
+            <h2 class="section-title">Educational Webinars</h2>
+            <div class="webinar-grid">
+                <div class="webinar-card">
+                    <div class="webinar-image"><i class="fas fa-brain"></i></div>
+                    <div class="webinar-content">
+                        <h3>Managing Anxiety in Daily Life</h3>
+                        <p>Learn practical strategies to cope with anxiety and stress in your everyday routine.</p>
+                        <small>Next Session: Every Thursday 7 PM</small>
+                    </div>
+                </div>
+                <div class="webinar-card">
+                    <div class="webinar-image"><i class="fas fa-heart"></i></div>
+                    <div class="webinar-content">
+                        <h3>Building Healthy Relationships</h3>
+                        <p>Discover communication techniques and relationship skills for stronger connections.</p>
+                        <small>Next Session: Every Tuesday 6 PM</small>
+                    </div>
+                </div>
+                <div class="webinar-card">
+                    <div class="webinar-image"><i class="fas fa-seedling"></i></div>
+                    <div class="webinar-content">
+                        <h3>Mindfulness & Self-Care</h3>
+                        <p>Explore mindfulness practices and self-care strategies for mental wellness.</p>
+                        <small>Next Session: Every Saturday 10 AM</small>
+                    </div>
+                </div>
             </div>
-            <div class="faq-item">
-                <h3 class="faq-question">How can I schedule an appointment?</h3>
-                <p class="faq-answer">You can contact us through the contact form or call us directly to schedule an appointment.</p>
-            </div>
-            <div class="faq-item">
-                <h3 class="faq-question">What should I expect during my first session?</h3>
-                <p class="faq-answer">Your first session will involve discussing your background, current challenges, and goals for therapy.</p>
-            </div>
-            <div class="faq-item">
-                <h3 class="faq-question">Do you accept insurance?</h3>
-                <p class="faq-answer">Yes, we accept various insurance plans. Please contact us for more details.</p>
-            </div>
-           
-
-        </section>
-
-    </main>
-
-    <!--footer starts here-->
-<footer>
-    <div class="footer-content">
-        <div class="footer-column">
-            <h3>Menu</h3>
-            <nav class="footer-menu">
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#about">About Us</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
         </div>
-       <div class="footer-column">
-            <h3>Contact Us</h3>
-            <p>If you have any questions, feel free to reach out!</p>
-            <input type="email" placeholder="Your email..." required>
-            <textarea placeholder="Your message..." rows="3"></textarea>
-            <button onclick="sendMessage()">Send</button>
-        </div>
-        <div class="footer-column">
-            <h3>WhatsApp</h3>
-            <p>Contact us on WhatsApp:</p>
-            <a href="https://wa.me/1234567890" target="_blank">Chat with us!</a>
-        </div>
-    </div>
-</footer>
- <script src="script.js"></script>
- <!-- Arrow Up Button -->
-<div id="arrowUp" class="arrow" onclick="scrollToTop()">
-    &#8593; <!-- Up arrow symbol -->
-</div>
+    </section>
 
-<!-- Arrow Down Button -->
-<div id="arrowDown" class="arrow" onclick="scrollToBottom()">
-    &#8595; <!-- Down arrow symbol -->
-</div>
+    <!-- Banner Section -->
+    <section class="banner animate-on-scroll">
+        <div class="container">
+            <h2>Ready to Get Better Now?</h2>
+            <p>Take the first step towards better mental health today</p>
+            <a href="#booking" class="cta-button" style="margin-top: 2rem;">Get Started Today</a>
+        </div>
+    </section>
+
+    <!-- Teletherapy Confidence Section -->
+    <section class="section teletherapy-confidence animate-on-scroll">
+        <div class="container">
+            <h2 class="section-title">Why Choose Teletherapy?</h2>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 3rem; font-size: 1.1rem;">Modern teletherapy is just as effective as in-person therapy, with added benefits of convenience, accessibility, and comfort.</p>
+            <div class="confidence-grid">
+                <div class="confidence-item">
+                    <div class="confidence-icon"><i class="fas fa-lock"></i></div>
+                    <h3>Secure & Private</h3>
+                    <p>HIPAA-compliant platform ensuring your privacy and confidentiality at all times.</p>
+                </div>
+                <div class="confidence-item">
+                    <div class="confidence-icon"><i class="fas fa-globe"></i></div>
+                    <h3>Accessible Anywhere</h3>
+                    <p>Connect from home, office, or anywhere you feel comfortable and safe.</p>
+                </div>
+                <div class="confidence-item">
+                    <div class="confidence-icon"><i class="fas fa-calendar-alt"></i></div>
+                    <h3>Flexible Scheduling</h3>
+                    <p>Book sessions that fit your schedule, including evenings and weekends.</p>
+                </div>
+                <div class="confidence-item">
+                    <div class="confidence-icon"><i class="fas fa-dollar-sign"></i></div>
+                    <h3>Cost-Effective</h3>
+                    <p>More affordable than traditional therapy with no travel costs or time lost.</p>
+                </div>
+            </div>
+        </div>
+    </section>   
+
+
+<!-- NEW INSURANCE SECTION -->
+    <section class="section insurance-section animate-on-scroll">
+        <div class="container">
+            <h2 class="section-title">Insurance & Payment Options</h2>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 2rem; font-size: 1.1rem;">
+                At ABY Therapy, we believe financial considerations should never be a barrier to mental health care. 
+                We accept most major insurance plans for both in-house and online therapy sessions.
+            </p>
+            
+            <div class="insurance-grid">
+                <div class="insurance-card">
+                    <div class="insurance-icon"><i class="fas fa-file-invoice-dollar"></i></div>
+                    <h3>Insurance Coverage</h3>
+                    <p>We accept a wide range of insurance providers. Our team will verify your benefits and explain your coverage before your first session.</p>
+                </div>
+                <div class="insurance-card">
+                    <div class="insurance-icon"><i class="fas fa-laptop-medical"></i></div>
+                    <h3>Online & In-Person</h3>
+                    <p>Insurance coverage applies equally to both our in-office appointments and virtual therapy sessions. Get covered care wherever you are.</p>
+                </div>
+                <div class="insurance-card">
+                    <div class="insurance-icon"><i class="fas fa-hand-holding-usd"></i></div>
+                    <h3>Flexible Payments</h3>
+                    <p>For those without insurance, we offer sliding scale fees and payment plans to make therapy accessible to everyone.</p>
+                </div>
+            </div>
+            
+            <div class="insurance-partners">
+                <div class="insurance-logo"><i class="fas fa-shield-alt" style="font-size: 2rem; color: var(--deep-blue-gray);"></i> HealthShield</div>
+                <div class="insurance-logo"><i class="fas fa-heartbeat" style="font-size: 2rem; color: var(--muted-mauve);"></i> CareFirst</div>
+                <div class="insurance-logo"><i class="fas fa-umbrella" style="font-size: 2rem; color: var(--deep-blue-gray);"></i> WellnessGuard</div>
+                <div class="insurance-logo"><i class="fas fa-plus-square" style="font-size: 2rem; color: var(--muted-mauve);"></i> MediPlus</div>
+                <div class="insurance-logo"><i class="fas fa-star-of-life" style="font-size: 2rem; color: var(--deep-blue-gray);"></i> LifeSecure</div>
+            </div>
+            
+            <div class="insurance-cta">
+                <a href="#contact" class="cta-button">Verify Your Insurance</a>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+    <!-- FAQ Section -->
+    <section class="section faq animate-on-scroll">
+        <div class="container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Who can benefit from ABY Therapy?</span>
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>ABY Therapy is designed for anyone seeking mental health support, whether you're dealing with specific challenges like anxiety or depression, going through life transitions, or simply wanting to improve your overall well-being. Our services are suitable for adults, teens, couples, and families.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>How does online therapy work?</span>
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Online therapy works through secure video calls, phone sessions, or messaging platforms. You'll be matched with a licensed therapist based on your needs and preferences. Sessions are conducted in real-time just like traditional therapy, but from the comfort and privacy of your chosen location.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Do you take insurance?</span>
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We work with most major insurance providers and also offer affordable self-pay options. Our team will help verify your insurance benefits and explain your coverage options during the initial consultation. We believe cost should never be a barrier to getting the help you need.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Is my privacy and safety protected?</span>
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Absolutely. We use HIPAA-compliant, encrypted platforms to ensure complete confidentiality. All our therapists are bound by professional ethical codes, and we have strict privacy policies in place. Your personal information and session content are never shared without your explicit consent.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Highlight Section -->
+    <section id="blog" class="section blog-highlight animate-on-scroll">
+        <div class="container">
+            <h2 class="section-title">Latest from Our Blog</h2>
+            <div class="blog-grid">
+                <div class="blog-card">
+                    <div class="blog-image"><i class="fas fa-pen"></i></div>
+                    <div class="blog-content">
+                        <h3>5 Signs It's Time to Seek Therapy</h3>
+                        <p>Recognizing when professional help can make a difference in your mental health journey.</p>
+                        <small>Published 3 days ago</small>
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <div class="blog-image"><i class="fas fa-spa"></i></div>
+                    <div class="blog-content">
+                        <h3>Mindfulness Techniques for Stress Relief</h3>
+                        <p>Simple daily practices that can help reduce stress and improve your overall well-being.</p>
+                        <small>Published 1 week ago</small>
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <div class="blog-image"><i class="fas fa-shield-alt"></i></div>
+                    <div class="blog-content">
+                        <h3>Building Resilience in Difficult Times</h3>
+                        <p>Strategies to develop emotional strength and bounce back from life's challenges.</p>
+                        <small>Published 2 weeks ago</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>ABY Therapy</h3>
+                    <p>A Better You Therapy - Professional mental health care that fits your life.</p>
+                    <p>Website: <a href="https://abytherapy.co.ke">abytherapy.co.ke</a></p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <a href="#home"><i class="fas fa-chevron-right"></i> Home</a>
+                    <a href="#about"><i class="fas fa-chevron-right"></i> About Us</a>
+                    <a href="#services"><i class="fas fa-chevron-right"></i> Services</a>
+                    <a href="#blog"><i class="fas fa-chevron-right"></i> Blog</a>
+                    <a href="#contact"><i class="fas fa-chevron-right"></i> Contact</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Our Services</h3>
+                    <a href="#"><i class="fas fa-chevron-right"></i> Individual Therapy</a>
+                    <a href="#"><i class="fas fa-chevron-right"></i> Couples Counseling</a>
+                    <a href="#"><i class="fas fa-chevron-right"></i> Group Therapy</a>
+                    <a href="#"><i class="fas fa-chevron-right"></i> Online Sessions</a>
+                    <a href="#"><i class="fas fa-chevron-right"></i> Workshops</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Wellness Street, Nairobi, Kenya</p>
+                    <p><i class="fas fa-phone"></i> +254 700 123 456</p>
+                    <p><i class="fas fa-envelope"></i> hello@abytherapy.co.ke</p>
+                    <p><i class="fas fa-clock"></i> Mon-Fri: 9am - 7pm</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 ABY Therapy. All rights reserved.</p>
+                <div class="footer-credits">
+                    <p>Proudly developed by: <a href="https://dellahm.github.io">Kairo Tech</a> | <a href="https://wokebusiness.org">WokeBusiness</a></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    
+                    // Close mobile menu if open
+                    document.querySelector('.nav-menu').classList.remove('active');
+                }
+            });
+        });
+
+        // Animate on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animated');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
+
+        // FAQ Toggle functionality
+        function toggleFAQ(element) {
+            const faqItem = element.parentElement;
+            const isActive = faqItem.classList.contains('active');
+            
+            // Close all FAQ items
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.classList.remove('active');
+                item.querySelector('.faq-question span:last-child').textContent = '+';
+            });
+            
+            // Open clicked item if it wasn't active
+            if (!isActive) {
+                faqItem.classList.add('active');
+                element.querySelector('span:last-child').textContent = '-';
+            }
+        }
+
+        // Navbar background change on scroll
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                navbar.style.boxShadow = '0 2px 15px rgba(0,0,0,0.1)';
+            }
+        });
+
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            document.querySelector('.nav-menu').classList.toggle('active');
+        });
+
+        // Add loading animation
+        window.addEventListener('load', function() {
+            document.body.style.opacity = '1';
+            document.body.style.transition = 'opacity 0.5s ease-in-out';
+        });
+
+        // Initialize animations
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add staggered animation to feature cards
+            const featureCards = document.querySelectorAll('.feature-card');
+            featureCards.forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.2}s`;
+                card.style.animation = 'fadeInUp 0.6s ease-out forwards';
+            });
+
+            // Add hover effects to treatment items
+            const treatmentItems = document.querySelectorAll('.treatment-item');
+            treatmentItems.forEach(item => {
+                item.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-10px) scale(1.02)';
+                });
+                
+                item.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+        });
+    </script>
 </body>
 </html>

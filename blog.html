@@ -3,206 +3,953 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog - ABY THERAPY</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Mental Wellness Blog | ABY Therapy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --dark-charcoal: #3E3E43;
+            --light-pink: #E1D1D7;
+            --muted-mauve: #856B7D;
+            --deep-blue-gray: #4F5980;
+            --light-gray: #f8f8f8;
+            --text-dark: #333333;
+            --text-light: #ffffff;
+            --border-color: #e5e7eb;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-gray);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.97);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--deep-blue-gray);
+        }
+        
+        .logo span {
+            color: var(--muted-mauve);
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--dark-charcoal);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-menu a:hover {
+            color: var(--muted-mauve);
+        }
+        
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--muted-mauve);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+        
+        /* Blog Hero Section */
+        .blog-hero {
+            height: 70vh;
+            background: linear-gradient(135deg, var(--deep-blue-gray) 0%, var(--dark-charcoal) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 70px;
+            text-align: center;
+        }
+        
+        .blog-hero-content {
+            color: var(--text-light);
+            z-index: 2;
+            max-width: 800px;
+            padding: 0 2rem;
+        }
+        
+        .blog-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        
+        .blog-hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            color: var(--light-pink);
+        }
+        
+        .search-container {
+            max-width: 600px;
+            margin: 2rem auto 0;
+            position: relative;
+        }
+        
+        .search-container input {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            border-radius: 50px;
+            border: none;
+            font-size: 1.1rem;
+            padding-right: 60px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        }
+        
+        .search-container button {
+            position: absolute;
+            right: 5px;
+            top: 5px;
+            background: var(--muted-mauve);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 0.8rem 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .search-container button:hover {
+            background: var(--deep-blue-gray);
+        }
+        
+        /* Blog Layout */
+        .blog-container {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 3rem;
+        }
+        
+        /* Main Content */
+        .blog-posts {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+        
+        .blog-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        .blog-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(79, 89, 128, 0.15);
+        }
+        
+        .blog-image {
+            height: 200px;
+            background: var(--deep-blue-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+            position: relative;
+        }
+        
+        .blog-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .category-tag {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: var(--muted-mauve);
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .blog-content {
+            padding: 1.8rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .blog-content h2 {
+            font-size: 1.5rem;
+            margin-bottom: 0.8rem;
+            color: var(--deep-blue-gray);
+        }
+        
+        .blog-meta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: var(--dark-charcoal);
+        }
+        
+        .blog-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+        
+        .blog-excerpt {
+            margin-bottom: 1.5rem;
+            color: var(--dark-charcoal);
+            line-height: 1.7;
+            flex-grow: 1;
+        }
+        
+        .read-more {
+            display: inline-block;
+            padding: 0.7rem 1.5rem;
+            background: transparent;
+            color: var(--muted-mauve);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid var(--muted-mauve);
+            text-align: center;
+            margin-top: auto;
+            width: fit-content;
+        }
+        
+        .read-more:hover {
+            background: var(--muted-mauve);
+            color: white;
+        }
+        
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 4rem;
+            gap: 0.5rem;
+        }
+        
+        .pagination a, .pagination span {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            background: white;
+            color: var(--deep-blue-gray);
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .pagination a:hover {
+            background: var(--muted-mauve);
+            color: white;
+        }
+        
+        .pagination .current {
+            background: var(--muted-mauve);
+            color: white;
+        }
+        
+        /* Sidebar */
+        .blog-sidebar {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            height: fit-content;
+        }
+        
+        .sidebar-title {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--light-pink);
+            color: var(--deep-blue-gray);
+        }
+        
+        .sidebar-widget {
+            margin-bottom: 2.5rem;
+        }
+        
+        .categories-list {
+            list-style: none;
+        }
+        
+        .categories-list li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .categories-list a {
+            color: var(--dark-charcoal);
+            text-decoration: none;
+            display: flex;
+            justify-content: space-between;
+            transition: all 0.3s ease;
+        }
+        
+        .categories-list a:hover {
+            color: var(--muted-mauve);
+            transform: translateX(5px);
+        }
+        
+        .categories-list span {
+            background: var(--light-pink);
+            padding: 0.1rem 0.6rem;
+            border-radius: 10px;
+            font-size: 0.8rem;
+        }
+        
+        .popular-posts .post-item {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.2rem;
+            padding-bottom: 1.2rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .popular-posts .post-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 10px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        
+        .popular-posts .post-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .popular-posts .post-content h3 {
+            font-size: 1rem;
+            margin-bottom: 0.3rem;
+        }
+        
+        .popular-posts .post-content a {
+            color: var(--dark-charcoal);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .popular-posts .post-content a:hover {
+            color: var(--muted-mauve);
+        }
+        
+        .popular-posts .post-date {
+            font-size: 0.8rem;
+            color: var(--muted-mauve);
+        }
+        
+        .newsletter-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .newsletter-form input {
+            padding: 0.8rem 1rem;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            font-size: 1rem;
+        }
+        
+        .newsletter-form button {
+            padding: 0.8rem;
+            background: var(--muted-mauve);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .newsletter-form button:hover {
+            background: var(--deep-blue-gray);
+        }
+        
+        .tags-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .tag {
+            padding: 0.4rem 0.8rem;
+            background: var(--light-pink);
+            border-radius: 20px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+        
+        .tag:hover {
+            background: var(--muted-mauve);
+            color: white;
+            cursor: pointer;
+        }
+        
+        /* Footer */
+        .footer {
+            background: var(--dark-charcoal);
+            color: #e0e1dd;
+            padding: 4rem 0 1rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 1.5rem;
+            color: var(--light-pink);
+            font-size: 1.4rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--muted-mauve);
+        }
+        
+        .footer-section p, .footer-section li {
+            color: #e0e1dd;
+            margin-bottom: 0.8rem;
+            line-height: 1.7;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #9ca3af;
+            font-size: 0.9rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 2rem 0;
+        }
+        
+        .footer-credits {
+            margin-top: 1rem;
+        }
+        
+        .footer-credits a {
+            color: var(--light-pink);
+            text-decoration: none;
+        }
+        
+        .footer-section a {
+            color: #e0e1dd;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: block;
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-section a:hover {
+            color: var(--light-pink);
+            transform: translateX(5px);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background: var(--muted-mauve);
+            transform: translateY(-3px);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .blog-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .blog-sidebar {
+                order: -1;
+                margin-bottom: 3rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .blog-hero {
+                height: 60vh;
+            }
+            
+            .blog-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .blog-posts {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-menu {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+        }
+        
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: transparent;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--deep-blue-gray);
+            cursor: pointer;
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .nav-menu {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                align-items: center;
+                padding: 2rem 0;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+                transform: translateY(-150%);
+                transition: transform 0.4s ease;
+            }
+            
+            .nav-menu.active {
+                transform: translateY(0);
+            }
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <nav class="navbar">
-            <div class="logo">ABY THERAPY</div>
-
-            <nav class="navbar">
-                <div class="logo">ABY THERAPY</div>
-                <div class="menu-toggle" onclick="toggleMenu()">
-                    <div class="bar"></div>
-                    <div class="bar"></div>
-                    <div class="bar"></div>
-                </div>
-
-            <ul class="nav-list">
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">ABY <span>Therapy</span></div>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-menu">
                 <li><a href="index.html">Home</a></li>
-                <li><a href="about-us.html">About Us</a></li>
-                <li><a href="resources.html">Resources</a></li>
-                <li><a href="blog.html">Blog</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="blog.html" class="active">Blog</a></li>
+                <li><a href="join.html">Join Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="booking.html">Booking</a></li>
+                <li><a href="webinars.html">Webinars</a></li>
             </ul>
-        </nav>
-    </header>
-
-    <main>
-        <section class="hero">
-            <h1>Our Blog</h1>
-            <p>Insights and articles on mental wellness and personal growth.</p>
-            <a href="#contact" class="btn">Book A Consultation</a>
-        </section>
-
-
- <!-- Section 1: Animated Title with Paragraph -->
- <section class="animated-title-section">
-    <div class="title-container">
-        <h1 class="animated-title">Welcome to Our Psychology Practice</h1>
-        <h2 class="subtitle">Your Journey Towards Mental Wellness Starts Here</h2>
-        <p class="description">At our practice, we provide compassionate and personalized therapy tailored to your unique needs. Our experienced team is here to support you in every step of your journey to mental well-being.</p>
-        <a href="#contact" class="cta-button">Book a Consultation</a>
-    </div>
-</section>
-
-
-    <div class="grid-container">
-        <div class="grid-item">
-            <img src="Images A/blog (1).png" alt="Image 1">
-            <p>Eu eiusmod culpa dolor amet ipsum reprehenderit eiusmod. Laboris tempor amet qui laboris. Duis pariatur voluptate pariatur anim amet excepteur. Minim sint elit et anim in Lorem nisi incididunt occaecat ipsum laboris est sint laborum. Laborum proident fugiat ipsum duis dolor reprehenderit ullamco dolore eiusmod pariatur. Aliqua occaecat proident sint nisi ipsum labore excepteur dolor. Occaecat aliquip consequat minim nostrud adipisicing exercitation duis proident esse proident culpa ex e </p>
         </div>
-        <div class="grid-item">
-            <img src="Images/person.jpg" alt="Image 2">
-            <p>Eu eiusmod culpa dolor amet ipsum reprehenderit eiusmod. Laboris tempor amet qui laboris. Duis pariatur voluptate pariatur anim amet excepteur. Minim sint elit et anim in Lorem nisi incididunt occaecat ipsum laboris est sint laborum. Laborum proident fugiat ipsum duis dolor reprehenderit ullamco dolore eiusmod pariatur. Aliqua occaecat proident sint nisi ipsum labore excepteur dolor. Occaecat aliquip consequat minim nostrud adipisicing exercitation duis proident esse proident culpa ex e. </p>
-        </div>
-    </div>
-</section>
+    </nav>
 
-<!-- Section 2: Image Wrapped Text -->
-<section class="image-text-section">
-    <img src="Images A/d.png" alt="Therapy Session" class="wrapped-image">
-    <div class="text-content">
-        <h2>Understanding Mental Health</h2>
-        <p>Mental health is just as important as physical health. Our practice provides a safe space to explore your thoughts and feelings. We utilize various therapeutic approaches tailored to your unique needs, ensuring that you receive the best possible care.Qui adipisicing adipisicing qui do veniam. Sunt Lorem ex sunt laboris nulla veniam ea est ea culpa nisi culpa esse. Nulla excepteur pariatur tempor consequat do laboris aliquip laboris. Irure quis dolor velit reprehenderit consequat excepteur anim voluptate minim ea exercitation.
-
-Cupidatat nulla velit aute anim consequat minim mollit deserunt laboris deserunt exercitation proident sunt esse. Culpa Lorem sint in ad aliqua. Amet cupidatat id tempor sit. Enim minim anim veniam id amet.
-
-Occaecat mollit ipsum laboris mollit occaecat do tempor amet pariatur nostrud eu. Cillum anim do ipsum cupidatat consectetur commodo Lorem excepteur. Dolor mollit occaecat velit officia eu. Enim fugiat deserunt adipisicing est occaecat nisi duis.</p>
-    </div>
-</section>
-
-<!-- Section 3: YouTube Video Section -->
-<section class="video-section">
-    <h2>Watch Our Introduction Video</h2>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/your_video_id" frameborder="0" allowfullscreen></iframe>
-</section>
-
-
-
-
-        <div class="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item">
-                    <img src="https://via.placeholder.com/300x200" alt="Blog Post 1">
-                    <h3>Blog Post Title 1</h3>
-                    <p>Irure ea reprehenderit sunt sint adipisicing. Quis cupidatat anim aute ex magna veniam eiusmod aliquip. Est nulla reprehenderit Lorem duis adipisicing sunt cupidatat et culpa deserunt reprehenderit. Quis voluptate fugiat elit do. Amet fugiat excepteur tempor dolor anim proident ex et cillum ex adipisicing incididunt et. Et commodo elit eiusmod cillum. Ipsum veniam labore nostrud quis non veniam consequat consectetur exercitation.
-Irure nostrud do non cupidatat cupidatat et sint commodo do. Nostrud minim aute quis velit occaecat id est ut exercitation aliquip sint dolore mollit dolore. Occaecat sunt veniam exercitation non ad nostrud aute aute quis fugiat. In dolor elit id cillum non velit ea magna laborum ad magna officia occaecat. Incididunt nostrud amet fugiat cillum laborum velit incididunt mollit qui tempor.Brief description of the blog post content goes here. It should be engaging and informative.</p>
-                </div>
-                <div class="carousel-item">
-                    <img src="https://via.placeholder.com/300x200" alt="Blog Post 2">
-                    <h3>Blog Post Title 2</h3>
-                    <p>Officia occaecat aute culpa in magna tempor reprehenderit quis enim ex velit et ea est. Eu officia esse duis sint ad elit proident. Minim anim veniam eiusmod cillum adipisicing cillum enim proident. Ea minim dolore excepteur ut reprehenderit Lorem incididunt non esse excepteur cupidatat velit nisi. Est quis voluptate laborum occaecat ullamco amet ea ex nostrud eiusmod mollit ex. Ipsum eu tempor commodo co
-Enim minim nulla laboris fugiat incididunt dolor. Enim consectetur ut culpa ullamco. Cupidatat commodo commodo minim incididunt consequat duis fugiat esse. Pariatur do consectetur consectetur nisi adipisicing elit nisi ut eu officia voluptate. Irure aliquip nulla nostrud ad incididunt ullamco pariatur. Ex officia quis pariatur consequat nostrud amet cupidatat adipisicing excepteur tempor magna cillum amet sint.Brief description of the blog post content goes here. It should be engaging and informative.</p>
-                </div>
-                <div class="carousel-item">
-                    <img src="https://via.placeholder.com/300x200" alt="Blog Post 3">
-                    <h3>Blog Post Title 3</h3>
-                    <p>Deserunt exercitation ad nostrud quis officia magna sunt culpa et aliquip adipisicing Lorem in. Amet exercitation est ea consectetur Lorem commodo sit. Ea cillum minim velit ullamco in veniam commodo consequat consequat id. 
-Sit veniam tempor eiusmod id et quis fugiat minim laboris ad ea nisi fugiat. Veniam anim voluptate commodo in ut ea aute id. Incididunt duis aliqua deserunt deserunt nostrud veniam id sunt reprehenderit. Ex eiusmod velit culpa in mollit esse laboris voluptate eu.Brief description of the blog post content goes here. It should be engaging and informative.</p>
-                </div>
-                <div class="carousel-item">
-                    <img src="https://via.placeholder.com/300x200" alt="Blog Post 4">
-                    <h3>Blog Post Title 4</h3>
-                    <p>Ea ea elit nulla nulla occaecat quis occaecat cillum do sunt. Ad anim quis dolore consequat non id nostrud duis qui excepteur ex commodo. Et enim sint minim duis ea eu dolore in ea. Minim commodo laboris eiusmod nostrud ad. Nulla incididunt laborum esse cillum est reprehenderit nulla cupidatat exercitation aliqua nostrud laborum. Occaecat velit aliqua consequat cillum do enim anim ullamco elit adipisicing non ex aute.lor eu ex eu aliqua do. Aute ea elit deserunt aute ad veniam eu ut consectetur incididunt minim qui ullamco laborum. Officia aliqua occaecat qui et minim duis sit elit aliquip exercitation enim. Dolore voluptate consectetur adipisicing id nisi tempor. Velit amet fugiat duis elit officia anim labore eu.Brief description of the blog post content goes here. It should be engaging and informative.</p>
-                </div>
-                <div class="carousel-item">
-                    <img src="https://via.placeholder.com/300x200" alt="Blog Post 5">
-                    <h3>Blog Post Title 5</h3>
-                    <p>Nulla nulla sint voluptate in non mollit pariatur id ex irure. Incididunt velit fugiat esse cupidatat fugiat dolore consectetur dolor fugiat. Dolore enim qui mollit pariatur incididunt irure ea nisi.
-Voluptate veniam velit labore veniam fugiat labore incididunt. Dolore aliquip non ex elit sint non quis culpa incididunt voluptate. Irure velit do est adipisicing culpa ex aliqua ullamco ullamco. Aliquip culpa enim ut eu duis do exercitation id tempor laborum. Duis laborum pariatur officia anim eiusmod ea eiusmod mollit commodo ex.Brief description of the blog post content goes here. It should be engaging and informative.</p>
-                </div>
+    <!-- Blog Hero Section -->
+    <section class="blog-hero">
+        <div class="blog-hero-content">
+            <h1>ABY Therapy Blog</h1>
+            <p>Insights, advice, and resources for your mental wellness journey</p>
+            <div class="search-container">
+                <input type="text" placeholder="Search blog posts...">
+                <button><i class="fas fa-search"></i> Search</button>
             </div>
         </div>
+    </section>
 
-
-
-        <section class="blog-content">
-            <h2>Latest Articles</h2>
-            <article>
-                <h3>Understanding Anxiety</h3>
-                <p>Quis esse nostrud labore occaecat dolor ad magna eu voluptate esse consequat ea sunt. Duis nostrud aliquip dolor est Lorem. Ipsum anim consequat reprehenderit est ea deserunt ea proident et veniam ex do id.
-
-Veniam incididunt qui consectetur exercitation. Cillum anim cupidatat mollit non exercitation incididunt dolore cillum mollit pariatur laborum in non adipisicing. Et Lorem cupidatat ullamco velit Lorem culpa. Aliquip sunt cupidatat ex consectetur consequat ad pariatur. Anim occaecat sit est in ad ad. Consectetur fugiat aute eu officia non eiusmod adipisicing. Laboris id est id quis culpa esse consectetur adipisicing deserunt consequat minim voluptate.
-Sit fugiat pariatur sunt cillum mollit duis ut elit pariatur magna proident nostrud cupidatat elit. Dolore reprehenderit duis eu proident excepteur proident sit aliquip nisi qui. Deserunt sit exercitation sit consectetur enim laboris. Quis excepteur Lorem aliquip sit. Ipsum nulla incididunt enim irure pariatur laborum. Consectetur in magna ut in laborum ullamco do occaecat Lorem id.Learn about the causes and treatments for anxiety disorders.</p>
-                <a href="#">Read more</a>
-            </article>
-            <article>
-                <h3>Benefits of Therapy</h3>
-                <p>Amet officia commodo in tempor non proident nulla tempor sunt esse exercitation adipisicing. Occaecat cillum veniam eiusmod in. Incididunt ipsum nostrud anim irure. Nulla culpa quis quis ipsum ea amet in sunt aliqua consequat. Excepteur minim sit tempor nulla dolore non dolore sit exercitation deserunt nulla nulla fugiat exercitation. Consectetur magna laborum duis id eiusmod. Ad qui eiusmod irure ea Lorem magna eu labore.
-niam est esse dolor incididunt enim labore minim qui labore labore. Deserunt est officia laborum proident officia incididunt culpa aliquip et. Magna laborum elit nisi irure anim occaecat veniam Lorem aliquip.
-. Proident irure adipisicing nulla laboris. Culpa pariatur est amet excepteur incididunt nostrud exercitation nostrud exercitation eiusmod ea aliqua amet. Nisi irure voluptate fugiat tempor dolore occaecat sit irure velit laboris sit non adipisicing proident. Nisi occaecat magna pariatur consectetur ad esse enim. Qui exercitation Lorem magna ullamco ullamco voluptate officia quis esse enim est nulla ut elit. Esse incididunt eu ullamco eu.Discover how therapy can improve your mental health and well-being.</p>
-                <a href                <a href="#">Read more</a>
-            </article>
-            <article>
-                <h3>Mindfulness Techniques</h3>
-                <p>Nulla nostrud laboris consequat eu eiusmod quis eiusmod elit cupidatat amet. Pariatur aute exercitation adipisicing esse sit irure voluptate adipisicing nulla dolor voluptate culpa adipisicing ut. Voluptate cupidatat excepteur nulla nostrud incididunt fugiat esse deserunt aute. Magna aute voluptate eu id cillum officia dolore qui quis incididunt. Elit nulla in esse ut ipsum labore et deserunt. Sint incididunt exercitation aute ipsum. Amet minim ex ad eiusmod qui eiusmod ex adipisicing eiusmod ex aute deserunt.
- Voluptate pariatur exercitation nulla excepteur dolor voluptate labore adipisicing est dolor ex ipsum. Ipsum exercitation amet labore minim laboris laborum ex. Dolore ea irure laborum et id Lorem ex ut pariatur adipisicing ad. Eiusmod mollit voluptate elit in mollit cupidatat sint cillum non quis quis consectetur duis. Ad pariatur aute voluptate sit voluptate.
-
-Minim eiusmod laborum aliquip ea incididunt laborum minim consequat voluptate incididunt sunt dolor veniam magna. Pariatur do ea id reprehenderit magna sit culpa ullamco minim elit proident culpa. Est aute aliqua elit voluptate. Nulla proident ullamco exercitation incididunt pariatur cupidatat consequat.Explore various mindfulness techniques to enhance your mental well-being.</p>
-                <a href="#">Read more</a>
-            </article>
-        </section>
-
-        <section id="faq" class="fade-in">
-            <h2>Frequently Asked Questions</h2>
-            <div class="faq-item">
-                <h3 class="faq-question">What types of therapy do you offer?</h3>
-                <p class="faq-answer">We offer individual, group, and family therapy sessions tailored to your needs.</p>
+    <!-- Blog Content -->
+    <div class="blog-container">
+        <main class="blog-main">
+            <div class="blog-posts">
+                <!-- Blog Post 1 -->
+                <article class="blog-card">
+                    <div class="blog-image">
+                        <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?q=80&w=2070" alt="Mindfulness meditation">
+                        <div class="category-tag">Mindfulness</div>
+                    </div>
+                    <div class="blog-content">
+                        <h2>5 Mindfulness Techniques for Daily Stress Relief</h2>
+                        <div class="blog-meta">
+                            <span><i class="far fa-calendar"></i> June 12, 2025</span>
+                            <span><i class="far fa-user"></i> Dr. Dellah Miheso</span>
+                            <span><i class="far fa-clock"></i> 5 min read</span>
+                        </div>
+                        <p class="blog-excerpt">Discover simple yet powerful mindfulness practices that can help reduce stress and anxiety in your daily routine. These techniques require just a few minutes each day but can transform your mental wellbeing.</p>
+                        <a href="post.html" class="read-more">Read More</a>
+                    </div>
+                </article>
+                
+                <!-- Blog Post 2 -->
+                <article class="blog-card">
+                    <div class="blog-image">
+                        <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=1887" alt="Therapy session">
+                        <div class="category-tag">Therapy</div>
+                    </div>
+                    <div class="blog-content">
+                        <h2>How to Know When It's Time to Seek Professional Help</h2>
+                        <div class="blog-meta">
+                            <span><i class="far fa-calendar"></i> June 5, 2025</span>
+                            <span><i class="far fa-user"></i> Dr. James Kariuki</span>
+                            <span><i class="far fa-clock"></i> 7 min read</span>
+                        </div>
+                        <p class="blog-excerpt">Recognizing when to seek professional mental health support can be challenging. Learn about the key signs that indicate it might be time to reach out to a therapist or counselor.</p>
+                        <a href="post.html" class="read-more">Read More</a>
+                    </div>
+                </article>
+                
+                <!-- Blog Post 3 -->
+                <article class="blog-card">
+                    <div class="blog-image">
+                        <img src="https://images.unsplash.com/photo-1511367461989-f85a21fda167?q=80&w=1931" alt="Sleep quality">
+                        <div class="category-tag">Sleep</div>
+                    </div>
+                    <div class="blog-content">
+                        <h2>The Connection Between Sleep and Mental Health</h2>
+                        <div class="blog-meta">
+                            <span><i class="far fa-calendar"></i> May 28, 2025</span>
+                            <span><i class="far fa-user"></i> Dr. Amina Wanjiku</span>
+                            <span><i class="far fa-clock"></i> 6 min read</span>
+                        </div>
+                        <p class="blog-excerpt">Explore the vital relationship between quality sleep and mental wellbeing. Discover evidence-based strategies to improve your sleep patterns and enhance your psychological health.</p>
+                        <a href="post.html" class="read-more">Read More</a>
+                    </div>
+                </article>
+                
+                <!-- Blog Post 4 -->
+                <article class="blog-card">
+                    <div class="blog-image">
+                        <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=1932" alt="Family therapy">
+                        <div class="category-tag">Relationships</div>
+                    </div>
+                    <div class="blog-content">
+                        <h2>Building Healthier Family Communication Patterns</h2>
+                        <div class="blog-meta">
+                            <span><i class="far fa-calendar"></i> May 20, 2025</span>
+                            <span><i class="far fa-user"></i> Dr. Samuel Mwangi</span>
+                            <span><i class="far fa-clock"></i> 8 min read</span>
+                        </div>
+                        <p class="blog-excerpt">Learn practical techniques to improve communication within your family. Discover how to create a supportive environment where every member feels heard and understood.</p>
+                        <a href="post.html" class="read-more">Read More</a>
+                    </div>
+                </article>
+                
+                <!-- Blog Post 5 -->
+                <article class="blog-card">
+                    <div class="blog-image">
+                        <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=1999" alt="Anxiety relief">
+                        <div class="category-tag">Anxiety</div>
+                    </div>
+                    <div class="blog-content">
+                        <h2>Coping Strategies for Social Anxiety in the Digital Age</h2>
+                        <div class="blog-meta">
+                            <span><i class="far fa-calendar"></i> May 12, 2025</span>
+                            <span><i class="far fa-user"></i> Dr. Fatima Hassan</span>
+                            <span><i class="far fa-clock"></i> 6 min read</span>
+                        </div>
+                        <p class="blog-excerpt">Navigate social situations with confidence using these evidence-based strategies. Learn how to manage anxiety in both online and offline social environments.</p>
+                        <a href="post.html" class="read-more">Read More</a>
+                    </div>
+                </article>
+                
+                <!-- Blog Post 6 -->
+                <article class="blog-card">
+                    <div class="blog-image">
+                        <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?q=80&w=2070" alt="Trauma recovery">
+                        <div class="category-tag">Trauma</div>
+                    </div>
+                    <div class="blog-content">
+                        <h2>Understanding Trauma and the Path to Healing</h2>
+                        <div class="blog-meta">
+                            <span><i class="far fa-calendar"></i> May 5, 2025</span>
+                            <span><i class="far fa-user"></i> Dr. Paul Ochieng</span>
+                            <span><i class="far fa-clock"></i> 9 min read</span>
+                        </div>
+                        <p class="blog-excerpt">Explore the nature of trauma and discover therapeutic approaches that support healing and recovery. Learn how to recognize trauma responses and build resilience.</p>
+                        <a href="post.html" class="read-more">Read More</a>
+                    </div>
+                </article>
             </div>
-            <div class="faq-item">
-                <h3 class="faq-question">How can I schedule an appointment?</h3>
-                <p class="faq-answer">You can contact us through the contact form or call us directly to schedule an appointment.</p>
+            
+            <!-- Pagination -->
+            <div class="pagination">
+                <a href="#"><i class="fas fa-chevron-left"></i></a>
+                <a href="#">1</a>
+                <span class="current">2</span>
+                <a href="#">3</a>
+                <a href="#">4</a>
+                <a href="#"><i class="fas fa-chevron-right"></i></a>
             </div>
-            <div class="faq-item">
-                <h3 class="faq-question">What should I expect during my first session?</h3>
-                <p class="faq-answer">Your first session will involve discussing your background, current challenges, and goals for therapy.</p>
+        </main>
+        
+        <!-- Sidebar -->
+        <aside class="blog-sidebar">
+            <!-- About Widget -->
+            <div class="sidebar-widget">
+                <h3 class="sidebar-title">About the Blog</h3>
+                <p>Welcome to the ABY Therapy Mental Wellness Blog. Our licensed therapists share evidence-based insights and practical advice to support your mental health journey.</p>
             </div>
-            <div class="faq-item">
-                <h3 class="faq-question">Do you accept insurance?</h3>
-                <p class="faq-answer">Yes, we accept various insurance plans. Please contact us for more details.</p>
+            
+            <!-- Categories Widget -->
+            <div class="sidebar-widget">
+                <h3 class="sidebar-title">Categories</h3>
+                <ul class="categories-list">
+                    <li><a href="#">Anxiety <span>12</span></a></li>
+                    <li><a href="#">Depression <span>8</span></a></li>
+                    <li><a href="#">Relationships <span>15</span></a></li>
+                    <li><a href="#">Mindfulness <span>10</span></a></li>
+                    <li><a href="#">Trauma <span>7</span></a></li>
+                    <li><a href="#">Parenting <span>9</span></a></li>
+                    <li><a href="#">Self-Care <span>14</span></a></li>
+                </ul>
             </div>
-           
-        </section>
-    </main>
+            
+            <!-- Popular Posts Widget -->
+            <div class="sidebar-widget">
+                <h3 class="sidebar-title">Popular Posts</h3>
+                <div class="popular-posts">
+                    <div class="post-item">
+                        <div class="post-image">
+                            <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?q=80&w=2070" alt="Stress management">
+                        </div>
+                        <div class="post-content">
+                            <h3><a href="#">10 Signs of Burnout and How to Recover</a></h3>
+                            <div class="post-date">April 28, 2025</div>
+                        </div>
+                    </div>
+                    <div class="post-item">
+                        <div class="post-image">
+                            <img src="https://images.unsplash.com/photo-1593508512255-86ab42a8e620?q=80&w=1986" alt="Digital detox">
+                        </div>
+                        <div class="post-content">
+                            <h3><a href="#">The Digital Detox: Why Your Brain Needs a Break</a></h3>
+                            <div class="post-date">April 15, 2025</div>
+                        </div>
+                    </div>
+                    <div class="post-item">
+                        <div class="post-image">
+                            <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=2070" alt="Therapy session">
+                        </div>
+                        <div class="post-content">
+                            <h3><a href="#">What to Expect in Your First Therapy Session</a></h3>
+                            <div class="post-date">April 5, 2025</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Newsletter Widget -->
+            <div class="sidebar-widget">
+                <h3 class="sidebar-title">Subscribe to Newsletter</h3>
+                <p>Get mental wellness tips and updates directly to your inbox.</p>
+                <form class="newsletter-form">
+                    <input type="text" placeholder="Your Name">
+                    <input type="email" placeholder="Your Email">
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+            
+            <!-- Tags Widget -->
+            <div class="sidebar-widget">
+                <h3 class="sidebar-title">Tags</h3>
+                <div class="tags-container">
+                    <div class="tag">CBT</div>
+                    <div class="tag">Self-Care</div>
+                    <div class="tag">Meditation</div>
+                    <div class="tag">Teletherapy</div>
+                    <div class="tag">Resilience</div>
+                    <div class="tag">Emotions</div>
+                    <div class="tag">Stress</div>
+                    <div class="tag">Grief</div>
+                    <div class="tag">Workplace</div>
+                </div>
+            </div>
+        </aside>
+    </div>
 
-    <footer>
+    <!-- Footer -->
+    <footer class="footer">
         <div class="footer-content">
-            <div class="footer-column">
-                <h3>Menu</h3>
-                <nav class="footer-menu">
-                    <ul>
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#services">Services</a></li>
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </nav>
+            <div class="footer-section">
+                <h3>ABY Therapy</h3>
+                <p>A Better You Therapy - Professional mental health care that fits your life.</p>
+                <p>Website: <a href="https://abytherapy.co.ke">abytherapy.co.ke</a></p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
             </div>
-            <div class="footer-column">
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <a href="index.html"><i class="fas fa-chevron-right"></i> Home</a>
+                <a href="about.html"><i class="fas fa-chevron-right"></i> About Us</a>
+                <a href="services.html"><i class="fas fa-chevron-right"></i> Services</a>
+                <a href="blog.html"><i class="fas fa-chevron-right"></i> Blog</a>
+                <a href="contact.html"><i class="fas fa-chevron-right"></i> Contact</a>
+            </div>
+            <div class="footer-section">
+                <h3>Our Services</h3>
+                <a href="#"><i class="fas fa-chevron-right"></i> Individual Therapy</a>
+                <a href="#"><i class="fas fa-chevron-right"></i> Couples Counseling</a>
+                <a href="#"><i class="fas fa-chevron-right"></i> Group Therapy</a>
+                <a href="#"><i class="fas fa-chevron-right"></i> Online Sessions</a>
+                <a href="#"><i class="fas fa-chevron-right"></i> Workshops</a>
+            </div>
+            <div class="footer-section">
                 <h3>Contact Us</h3>
-                <p>If you have any questions, feel free to reach out!</p>
-                <input type="email" placeholder="Your email..." required>
-                <textarea placeholder="Your message..." rows="3"></textarea>
-                <button onclick="sendMessage()">Send</button>
+                <p><i class="fas fa-map-marker-alt"></i> 123 Wellness Street, Nairobi, Kenya</p>
+                <p><i class="fas fa-phone"></i> +254 700 123 456</p>
+                <p><i class="fas fa-envelope"></i> hello@abytherapy.co.ke</p>
+                <p><i class="fas fa-clock"></i> Mon-Fri: 9am - 7pm</p>
             </div>
-            <div class="footer-column">
-                <h3>WhatsApp</h3>
-                <p>Contact us on WhatsApp:</p>
-                <a href="https://wa.me/1234567890" target="_blank">Chat with us!</a>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 ABY Therapy. All rights reserved.</p>
+            <div class="footer-credits">
+                <p>Proudly developed by: <a href="https://dellahm.github.io">Kairo Tech</a> | <a href="https://wokebusiness.org">WokeBusiness</a></p>
             </div>
         </div>
     </footer>
-    <script src="script.js"></script>
-    <!-- Arrow Up Button -->
-<div id="arrowUp" class="arrow" onclick="scrollToTop()">
-    &#8593; <!-- Up arrow symbol -->
-</div>
 
-<!-- Arrow Down Button -->
-<div id="arrowDown" class="arrow" onclick="scrollToBottom()">
-    &#8595; <!-- Down arrow symbol -->
-</div>
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    
+                    // Close mobile menu if open
+                    document.querySelector('.nav-menu').classList.remove('active');
+                }
+            });
+        });
+
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            document.querySelector('.nav-menu').classList.toggle('active');
+        });
+
+        // Staggered animation for blog cards
+        document.addEventListener('DOMContentLoaded', function() {
+            const blogCards = document.querySelectorAll('.blog-card');
+            blogCards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'all 0.5s ease';
+                
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, 150 * index);
+            });
+        });
+        
+        // Search functionality placeholder
+        document.querySelector('.search-container button').addEventListener('click', function() {
+            const searchTerm = document.querySelector('.search-container input').value;
+            if(searchTerm.trim() !== '') {
+                alert(`Searching for: ${searchTerm}\nThis functionality would be implemented with a backend in a production environment.`);
+            }
+        });
+    </script>
 </body>
 </html>
