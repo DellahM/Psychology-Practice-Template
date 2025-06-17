@@ -1,0 +1,1141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services | ABY Therapy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --dark-charcoal: #3E3E43;
+            --light-pink: #E1D1D7;
+            --muted-mauve: #856B7D;
+            --deep-blue-gray: #4F5980;
+            --light-gray: #f8f8f8;
+            --text-dark: #333333;
+            --text-light: #ffffff;
+            --border-color: #e5e7eb;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-gray);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.97);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--deep-blue-gray);
+        }
+        
+        .logo span {
+            color: var(--muted-mauve);
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--dark-charcoal);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-menu a:hover {
+            color: var(--muted-mauve);
+        }
+        
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--muted-mauve);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+        
+        /* Services Hero Section */
+        .services-hero {
+            height: 60vh;
+            background: linear-gradient(135deg, var(--deep-blue-gray) 0%, var(--dark-charcoal) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 70px;
+            text-align: center;
+        }
+        
+        .services-hero-content {
+            color: var(--text-light);
+            z-index: 2;
+            max-width: 800px;
+            padding: 0 2rem;
+        }
+        
+        .services-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        
+        .services-hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            color: var(--light-pink);
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: var(--muted-mauve);
+            color: var(--text-light);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid var(--muted-mauve);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .cta-button:hover {
+            background: transparent;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Services Main Content */
+        .services-container {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            font-weight: 700;
+            color: var(--deep-blue-gray);
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--muted-mauve);
+            border-radius: 2px;
+        }
+        
+        .services-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 4rem;
+            font-size: 1.1rem;
+            color: var(--dark-charcoal);
+        }
+        
+        /* Therapy Services */
+        .therapy-services {
+            margin-bottom: 5rem;
+        }
+        
+        .service-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .service-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border-top: 4px solid var(--muted-mauve);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(79, 89, 128, 0.15);
+        }
+        
+        .service-image {
+            height: 200px;
+            background: var(--deep-blue-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+            font-size: 3rem;
+        }
+        
+        .service-content {
+            padding: 2rem;
+        }
+        
+        .service-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--deep-blue-gray);
+        }
+        
+        .service-content p {
+            margin-bottom: 1.5rem;
+            color: var(--dark-charcoal);
+        }
+        
+        .service-features {
+            margin: 1.5rem 0;
+        }
+        
+        .service-features li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 0.8rem;
+            color: var(--dark-charcoal);
+        }
+        
+        .service-features i {
+            color: var(--muted-mauve);
+            margin-right: 0.8rem;
+            margin-top: 0.2rem;
+        }
+        
+        .service-cta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 2rem;
+        }
+        
+        .price {
+            font-weight: 600;
+            color: var(--muted-mauve);
+            font-size: 1.2rem;
+        }
+        
+        /* Treatment Approaches */
+        .treatment-approaches {
+            background: white;
+            padding: 4rem 0;
+            margin: 5rem 0;
+            position: relative;
+        }
+        
+        .treatment-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .approach-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .approach-card {
+            background: var(--light-gray);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(133, 107, 125, 0.1);
+        }
+        
+        .approach-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(133, 107, 125, 0.1);
+            border-color: rgba(133, 107, 125, 0.3);
+        }
+        
+        .approach-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--light-pink);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+            color: var(--muted-mauve);
+            transition: all 0.3s ease;
+        }
+        
+        .approach-card:hover .approach-icon {
+            background: var(--muted-mauve);
+            color: white;
+            transform: scale(1.1);
+        }
+        
+        /* Specialized Programs */
+        .specialized-programs {
+            margin-bottom: 5rem;
+        }
+        
+        .program-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .program-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .program-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(79, 89, 128, 0.15);
+        }
+        
+        .program-image {
+            height: 180px;
+            background: var(--deep-blue-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+            font-size: 2.5rem;
+        }
+        
+        .program-content {
+            padding: 2rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .program-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: var(--deep-blue-gray);
+        }
+        
+        .program-duration {
+            display: inline-block;
+            background: var(--light-pink);
+            color: var(--muted-mauve);
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        
+        .program-content p {
+            margin-bottom: 1.5rem;
+            color: var(--dark-charcoal);
+            flex-grow: 1;
+        }
+        
+        /* Insurance Section */
+        .insurance-section {
+            background: linear-gradient(135deg, #f0f5ff 0%, #e6f0ff 100%);
+            padding: 5rem 0;
+            margin: 5rem 0;
+        }
+        
+        .insurance-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            text-align: center;
+        }
+        
+        .insurance-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .insurance-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border-left: 4px solid var(--muted-mauve);
+        }
+        
+        .insurance-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(79, 89, 128, 0.15);
+        }
+        
+        .insurance-icon {
+            font-size: 2.5rem;
+            color: var(--deep-blue-gray);
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        
+        .insurance-icon::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background: var(--muted-mauve);
+        }
+        
+        .insurance-card h3 {
+            margin-bottom: 1rem;
+            color: var(--deep-blue-gray);
+        }
+        
+        .insurance-partners {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 12px;
+        }
+        
+        .insurance-logo {
+            width: 120px;
+            height: 60px;
+            background: white;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            padding: 0.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .insurance-logo:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(79, 89, 128, 0.15);
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--deep-blue-gray) 0%, var(--dark-charcoal) 100%);
+            color: var(--text-light);
+            text-align: center;
+            padding: 4rem 0;
+            margin-top: 5rem;
+        }
+        
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .cta-section p {
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        /* Footer */
+        .footer {
+            background: var(--dark-charcoal);
+            color: #e0e1dd;
+            padding: 4rem 0 1rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 1.5rem;
+            color: var(--light-pink);
+            font-size: 1.4rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--muted-mauve);
+        }
+        
+        .footer-section p, .footer-section li {
+            color: #e0e1dd;
+            margin-bottom: 0.8rem;
+            line-height: 1.7;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #9ca3af;
+            font-size: 0.9rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 2rem 0;
+        }
+        
+        .footer-credits {
+            margin-top: 1rem;
+        }
+        
+        .footer-credits a {
+            color: var(--light-pink);
+            text-decoration: none;
+        }
+        
+        .footer-section a {
+            color: #e0e1dd;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: block;
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-section a:hover {
+            color: var(--light-pink);
+            transform: translateX(5px);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background: var(--muted-mauve);
+            transform: translateY(-3px);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .service-cards {
+                grid-template-columns: 1fr;
+            }
+            
+            .services-hero h1 {
+                font-size: 3rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .services-hero {
+                height: 50vh;
+            }
+            
+            .services-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .nav-menu {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+        }
+        
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: transparent;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--deep-blue-gray);
+            cursor: pointer;
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .nav-menu {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                align-items: center;
+                padding: 2rem 0;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+                transform: translateY(-150%);
+                transition: transform 0.4s ease;
+            }
+            
+            .nav-menu.active {
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">ABY <span>Therapy</span></div>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="services.html" class="active">Services</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="join.html">Join Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="booking.html">Booking</a></li>
+                <li><a href="webinars.html">Webinars</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Services Hero Section -->
+    <section class="services-hero">
+        <div class="services-hero-content">
+            <h1>Our Therapeutic Services</h1>
+            <p>Evidence-based mental health care tailored to your unique needs and goals</p>
+            <a href="booking.html" class="cta-button">Book a Session Today</a>
+        </div>
+    </section>
+
+    <!-- Services Main Content -->
+    <div class="services-container">
+        <div class="services-intro">
+            <h2 class="section-title">Comprehensive Mental Health Services</h2>
+            <p>At ABY Therapy, we offer a range of professional mental health services designed to support your journey toward emotional wellbeing. Our licensed therapists provide personalized care using evidence-based approaches in a safe, confidential environment.</p>
+        </div>
+
+        <!-- Therapy Services Section -->
+        <section class="therapy-services">
+            <h2 class="section-title">Our Therapy Services</h2>
+            <div class="service-cards">
+                <!-- Individual Therapy -->
+                <div class="service-card">
+                    <div class="service-image">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Individual Therapy</h3>
+                        <p>One-on-one sessions tailored to your personal mental health goals and challenges. Our therapists provide a safe space to explore your thoughts, feelings, and behaviors while developing coping strategies.</p>
+                        
+                        <div class="service-features">
+                            <ul>
+                                <li><i class="fas fa-check"></i> Personalized treatment plans</li>
+                                <li><i class="fas fa-check"></i> Weekly or bi-weekly sessions</li>
+                                <li><i class="fas fa-check"></i> 50-minute sessions</li>
+                                <li><i class="fas fa-check"></i> All sessions are confidential</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="service-cta">
+                            <span class="price">From KES 3,500/session</span>
+                            <a href="booking.html" class="cta-button">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Couples Counseling -->
+                <div class="service-card">
+                    <div class="service-image">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Couples Counseling</h3>
+                        <p>Strengthen your relationship with professional guidance. Our therapists help couples improve communication, resolve conflicts, and rebuild trust in a neutral, supportive environment.</p>
+                        
+                        <div class="service-features">
+                            <ul>
+                                <li><i class="fas fa-check"></i> Improve communication skills</li>
+                                <li><i class="fas fa-check"></i> Resolve recurring conflicts</li>
+                                <li><i class="fas fa-check"></i> Rebuild trust and intimacy</li>
+                                <li><i class="fas fa-check"></i> 80-minute sessions</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="service-cta">
+                            <span class="price">From KES 5,000/session</span>
+                            <a href="booking.html" class="cta-button">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Group Therapy -->
+                <div class="service-card">
+                    <div class="service-image">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Group Therapy</h3>
+                        <p>Supportive group sessions for shared experiences and collective healing. Connect with others facing similar challenges in a professionally facilitated setting.</p>
+                        
+                        <div class="service-features">
+                            <ul>
+                                <li><i class="fas fa-check"></i> Small, intimate groups (6-8 people)</li>
+                                <li><i class="fas fa-check"></i> Thematic focus (anxiety, grief, etc.)</li>
+                                <li><i class="fas fa-check"></i> Weekly 90-minute sessions</li>
+                                <li><i class="fas fa-check"></i> Affordable alternative to individual therapy</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="service-cta">
+                            <span class="price">KES 2,500/session</span>
+                            <a href="booking.html" class="cta-button">Join a Group</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Family Therapy -->
+                <div class="service-card">
+                    <div class="service-image">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Family Therapy</h3>
+                        <p>Improve family dynamics and communication patterns. Our therapists help families navigate challenges, transitions, and conflicts to build stronger relationships.</p>
+                        
+                        <div class="service-features">
+                            <ul>
+                                <li><i class="fas fa-check"></i> Address generational patterns</li>
+                                <li><i class="fas fa-check"></i> Improve conflict resolution</li>
+                                <li><i class="fas fa-check"></i> Navigate life transitions together</li>
+                                <li><i class="fas fa-check"></i> 80-minute sessions</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="service-cta">
+                            <span class="price">From KES 6,000/session</span>
+                            <a href="booking.html" class="cta-button">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Child & Adolescent Therapy -->
+                <div class="service-card">
+                    <div class="service-image">
+                        <i class="fas fa-child"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Child & Adolescent Therapy</h3>
+                        <p>Specialized support for young people dealing with emotional, behavioral, or developmental challenges. We use age-appropriate therapeutic techniques.</p>
+                        
+                        <div class="service-features">
+                            <ul>
+                                <li><i class="fas fa-check"></i> Play therapy for younger children</li>
+                                <li><i class="fas fa-check"></i> CBT and DBT for teens</li>
+                                <li><i class="fas fa-check"></i> Parent guidance included</li>
+                                <li><i class="fas fa-check"></i> School collaboration available</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="service-cta">
+                            <span class="price">From KES 4,000/session</span>
+                            <a href="booking.html" class="cta-button">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Online Therapy -->
+                <div class="service-card">
+                    <div class="service-image">
+                        <i class="fas fa-laptop"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Online Therapy</h3>
+                        <p>Professional therapy from the comfort of your home. Secure video sessions with the same quality of care as in-person visits.</p>
+                        
+                        <div class="service-features">
+                            <ul>
+                                <li><i class="fas fa-check"></i> HIPAA-compliant platform</li>
+                                <li><i class="fas fa-check"></i> Flexible scheduling</li>
+                                <li><i class="fas fa-check"></i> Available across Kenya</li>
+                                <li><i class="fas fa-check"></i> Same effectiveness as in-person</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="service-cta">
+                            <span class="price">From KES 3,500/session</span>
+                            <a href="booking.html" class="cta-button">Start Online</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Treatment Approaches Section -->
+        <section class="treatment-approaches">
+            <div class="treatment-container">
+                <h2 class="section-title">Our Treatment Approaches</h2>
+                <p class="services-intro">We utilize evidence-based therapeutic modalities tailored to each client's unique needs and goals.</p>
+                
+                <div class="approach-cards">
+                    <div class="approach-card">
+                        <div class="approach-icon"><i class="fas fa-brain"></i></div>
+                        <h3>Cognitive Behavioral Therapy (CBT)</h3>
+                        <p>Identify and change negative thought patterns and behaviors that contribute to emotional distress.</p>
+                    </div>
+                    
+                    <div class="approach-card">
+                        <div class="approach-icon"><i class="fas fa-heart"></i></div>
+                        <h3>Dialectical Behavior Therapy (DBT)</h3>
+                        <p>Develop skills in mindfulness, emotion regulation, distress tolerance, and interpersonal effectiveness.</p>
+                    </div>
+                    
+                    <div class="approach-card">
+                        <div class="approach-icon"><i class="fas fa-project-diagram"></i></div>
+                        <h3>Psychodynamic Therapy</h3>
+                        <p>Explore unconscious patterns and childhood experiences that influence current thoughts and behaviors.</p>
+                    </div>
+                    
+                    <div class="approach-card">
+                        <div class="approach-icon"><i class="fas fa-hands-helping"></i></div>
+                        <h3>Humanistic Therapy</h3>
+                        <p>Focus on self-exploration, personal growth, and realizing your full potential.</p>
+                    </div>
+                    
+                    <div class="approach-card">
+                        <div class="approach-icon"><i class="fas fa-eye"></i></div>
+                        <h3>EMDR</h3>
+                        <p>Eye Movement Desensitization and Reprocessing for trauma and PTSD treatment.</p>
+                    </div>
+                    
+                    <div class="approach-card">
+                        <div class="approach-icon"><i class="fas fa-spa"></i></div>
+                        <h3>Mindfulness-Based Therapies</h3>
+                        <p>Cultivate present-moment awareness to reduce stress and improve emotional regulation.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+<!-- Therapist Team Section -->
+<section class="therapist-team">
+    <div class="container">
+        <h2 class="section-title">Meet Our Licensed Therapists</h2>
+        <p class="services-intro">Our team consists of highly qualified professionals dedicated to your mental wellness.</p>
+        
+        <div class="therapist-grid">
+            <!-- Therapist 1 -->
+            <div class="therapist-card">
+                <div class="therapist-image">
+                    <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=2070" alt="Dr. Dellah Miheso">
+                </div>
+                <div class="therapist-info">
+                    <h3>Dr. Dellah Miheso</h3>
+                    <p class="specialty">Clinical Psychologist (PhD)</p>
+                    <div class="credentials">
+                        <span><i class="fas fa-certificate"></i> Licensed by Kenya Psychological Association</span>
+                        <span><i class="fas fa-graduation-cap"></i> 12+ years of experience</span>
+                    </div>
+                    <p class="bio">Specializes in trauma recovery, CBT, and teletherapy. Passionate about making mental healthcare accessible.</p>
+                    <a href="booking.html" class="cta-button">Book with Dellah</a>
+                </div>
+            </div>
+            
+            <!-- Therapist 2 -->
+            <div class="therapist-card">
+                <div class="therapist-image">
+                    <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?q=80&w=1964" alt="Dr. James Kariuki">
+                </div>
+                <div class="therapist-info">
+                    <h3>Dr. James Kariuki</h3>
+                    <p class="specialty">Marriage & Family Therapist (LMFT)</p>
+                    <div class="credentials">
+                        <span><i class="fas fa-certificate"></i> Certified Gottman Method Therapist</span>
+                        <span><i class="fas fa-graduation-cap"></i> 8+ years of experience</span>
+                    </div>
+                    <p class="bio">Expert in couples counseling and conflict resolution with a focus on African family dynamics.</p>
+                    <a href="booking.html" class="cta-button">Book with James</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+        <!-- Specialized Programs Section -->
+        <section class="specialized-programs">
+            <h2 class="section-title">Specialized Programs</h2>
+            <p class="services-intro">Our intensive programs provide focused support for specific mental health challenges.</p>
+            
+            <div class="program-cards">
+                <div class="program-card">
+                    <div class="program-image">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <div class="program-content">
+                        <span class="program-duration">8-WEEK PROGRAM</span>
+                        <h3>Anxiety Management Program</h3>
+                        <p>A structured program combining CBT techniques with mindfulness practices to help you manage anxiety symptoms and regain control of your life.</p>
+                        <a href="booking.html" class="cta-button">Learn More</a>
+                    </div>
+                </div>
+                
+                <div class="program-card">
+                    <div class="program-image">
+                        <i class="fas fa-heart-broken"></i>
+                    </div>
+                    <div class="program-content">
+                        <span class="program-duration">12-WEEK PROGRAM</span>
+                        <h3>Trauma Recovery Program</h3>
+                        <p>Specialized trauma-focused therapy incorporating EMDR and somatic experiencing to process and heal from traumatic experiences.</p>
+                        <a href="booking.html" class="cta-button">Learn More</a>
+                    </div>
+                </div>
+                
+                <div class="program-card">
+                    <div class="program-image">
+                        <i class="fas fa-bed"></i>
+                    </div>
+                    <div class="program-content">
+                        <span class="program-duration">6-WEEK PROGRAM</span>
+                        <h3>Sleep Restoration Program</h3>
+                        <p>Evidence-based interventions to address insomnia and improve sleep quality through cognitive and behavioral techniques.</p>
+                        <a href="booking.html" class="cta-button">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Insurance Section -->
+        <section class="insurance-section">
+            <div class="insurance-content">
+                <h2 class="section-title">Insurance & Payment Options</h2>
+                <p style="text-align: center; max-width: 800px; margin: 0 auto 2rem; font-size: 1.1rem;">
+                    At ABY Therapy, we believe financial considerations should never be a barrier to mental health care. 
+                    We accept most major insurance plans for both in-house and online therapy sessions.
+                </p>
+                
+                <div class="insurance-grid">
+                    <div class="insurance-card">
+                        <div class="insurance-icon"><i class="fas fa-file-invoice-dollar"></i></div>
+                        <h3>Insurance Coverage</h3>
+                        <p>We accept a wide range of insurance providers. Our team will verify your benefits and explain your coverage before your first session.</p>
+                    </div>
+                    <div class="insurance-card">
+                        <div class="insurance-icon"><i class="fas fa-laptop-medical"></i></div>
+                        <h3>Online & In-Person</h3>
+                        <p>Insurance coverage applies equally to both our in-office appointments and virtual therapy sessions. Get covered care wherever you are.</p>
+                    </div>
+                    <div class="insurance-card">
+                        <div class="insurance-icon"><i class="fas fa-hand-holding-usd"></i></div>
+                        <h3>Flexible Payments</h3>
+                        <p>For those without insurance, we offer sliding scale fees and payment plans to make therapy accessible to everyone.</p>
+                    </div>
+                </div>
+                
+                <div class="insurance-partners">
+                    <div class="insurance-logo"><i class="fas fa-shield-alt" style="font-size: 2rem; color: var(--deep-blue-gray);"></i> HealthShield</div>
+                    <div class="insurance-logo"><i class="fas fa-heartbeat" style="font-size: 2rem; color: var(--muted-mauve);"></i> CareFirst</div>
+                    <div class="insurance-logo"><i class="fas fa-umbrella" style="font-size: 2rem; color: var(--deep-blue-gray);"></i> WellnessGuard</div>
+                    <div class="insurance-logo"><i class="fas fa-plus-square" style="font-size: 2rem; color: var(--muted-mauve);"></i> MediPlus</div>
+                    <div class="insurance-logo"><i class="fas fa-star-of-life" style="font-size: 2rem; color: var(--deep-blue-gray);"></i> LifeSecure</div>
+                </div>
+                
+                <div style="margin-top: 2.5rem;">
+                    <a href="contact.html" class="cta-button">Verify Your Insurance</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <h2>Ready to Begin Your Healing Journey?</h2>
+            <p>Take the first step toward better mental health today. Our compassionate therapists are here to support you.</p>
+            <a href="booking.html" class="cta-button">Schedule Your First Session</a>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>ABY Therapy</h3>
+                <p>A Better You Therapy - Professional mental health care that fits your life.</p>
+                <p>Website: <a href="https://abytherapy.co.ke">abytherapy.co.ke</a></p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <a href="index.html"><i class="fas fa-chevron-right"></i> Home</a>
+                <a href="about.html"><i class="fas fa-chevron-right"></i> About Us</a>
+                <a href="services.html"><i class="fas fa-chevron-right"></i> Services</a>
+                <a href="blog.html"><i class="fas fa-chevron-right"></i> Blog</a>
+                <a href="contact.html"><i class="fas fa-chevron-right"></i> Contact</a>
+            </div>
+            <div class="footer-section">
+                <h3>Our Services</h3>
+                <a href="#"><i class="fas fa-chevron-right"></i> Individual Therapy</a>
+                <a href="#"><i class="fas fa-chevron-right"></i> Couples Counseling</a>
+                <a href="#"><i class="fas fa-chevron-right"></i> Group Therapy</a>
+                <a href="#"><i class="fas fa-chevron-right"></i> Online Sessions</a>
+                <a href="#"><i class="fas fa-chevron-right"></i> Workshops</a>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p><i class="fas fa-map-marker-alt"></i> 123 Wellness Street, Nairobi, Kenya</p>
+                <p><i class="fas fa-phone"></i> +254 700 123 456</p>
+                <p><i class="fas fa-envelope"></i> hello@abytherapy.co.ke</p>
+                <p><i class="fas fa-clock"></i> Mon-Fri: 9am - 7pm</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 ABY Therapy. All rights reserved.</p>
+            <div class="footer-credits">
+                <p>Proudly developed by: <a href="https://dellahm.github.io">Kairo Tech</a> | <a href="https://wokebusiness.org">WokeBusiness</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    
+                    // Close mobile menu if open
+                    document.querySelector('.nav-menu').classList.remove('active');
+                }
+            });
+        });
+
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            document.querySelector('.nav-menu').classList.toggle('active');
+        });
+
+        // Animation for service cards
+        document.addEventListener('DOMContentLoaded', function() {
+            const serviceCards = document.querySelectorAll('.service-card');
+            serviceCards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'all 0.5s ease';
+                
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, 150 * index);
+            });
+            
+            // Animation for approach cards
+            const approachCards = document.querySelectorAll('.approach-card');
+            approachCards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'all 0.5s ease';
+                
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, 150 * index);
+            });
+        });
+    </script>
+</body>
+</html>
