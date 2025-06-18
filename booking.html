@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book a Session | ABY Therapy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <style>
+        :root {
+            --dark-charcoal: #3E3E43;
+            --light-pink: #E1D1D7;
+            --muted-mauve: #856B7D;
+            --deep-blue-gray: #4F5980;
+            --light-gray: #f8f8f8;
+            --text-dark: #333333;
+            --text-light: #ffffff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-gray);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+        
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.97);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--deep-blue-gray);
+        }
+        
+        .logo span {
+            color: var(--muted-mauve);
+        }
+        
+        /* Booking Hero */
+        .booking-hero {
+            background: linear-gradient(135deg, var(--deep-blue-gray) 0%, var(--dark-charcoal) 100%);
+            color: white;
+            text-align: center;
+            padding: 8rem 2rem 4rem;
+            margin-bottom: 3rem;
+        }
+        
+        .booking-hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+        }
+        
+        /* Main Booking Container */
+        .booking-container {
+            max-width: 1200px;
+            margin: 0 auto 5rem;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+        }
+        
+        .booking-step {
+            background: white;
+            border-radius: 15px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+        
+        .booking-step h2 {
+            color: var(--deep-blue-gray);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .booking-step h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--muted-mauve);
+        }
+        
+        /* Therapist Selection */
+        .therapist-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .therapist-option {
+            border: 2px solid var(--light-pink);
+            border-radius: 10px;
+            padding: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        
+        .therapist-option:hover {
+            border-color: var(--muted-mauve);
+            transform: translateY(-5px);
+        }
+        
+        .therapist-option.selected {
+            border-color: var(--muted-mauve);
+            background: rgba(133, 107, 125, 0.05);
+        }
+        
+        .therapist-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        
+        .therapist-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .therapist-details h3 {
+            color: var(--deep-blue-gray);
+            margin-bottom: 0.3rem;
+        }
+        
+        .therapist-specialty {
+            color: var(--muted-mauve);
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        
+        /* Calendar Widget */
+        .calendar-container {
+            margin-top: 2rem;
+        }
+        
+        .flatpickr-calendar {
+            box-shadow: none !important;
+            border-radius: 10px !important;
+            border: 1px solid var(--light-pink) !important;
+        }
+        
+        .time-slots {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .time-slot {
+            background: white;
+            border: 1px solid var(--light-pink);
+            border-radius: 8px;
+            padding: 0.8rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .time-slot:hover {
+            background: var(--light-pink);
+        }
+        
+        .time-slot.selected {
+            background: var(--muted-mauve);
+            color: white;
+            border-color: var(--muted-mauve);
+        }
+        
+        /* Booking Summary */
+        .appointment-details {
+            background: var(--light-gray);
+            border-radius: 10px;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(133, 107, 125, 0.2);
+        }
+        
+        .detail-label {
+            color: var(--muted-mauve);
+            font-weight: 600;
+        }
+        
+        /* Payment Section */
+        .payment-methods {
+            margin-top: 2rem;
+        }
+        
+        .payment-options {
+            display: flex;
+            gap: 1rem;
+            margin: 1.5rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .payment-option {
+            border: 1px solid var(--light-pink);
+            border-radius: 8px;
+            padding: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex: 1;
+            min-width: 120px;
+            text-align: center;
+        }
+        
+        .payment-option.selected {
+            border-color: var(--muted-mauve);
+            background: rgba(133, 107, 125, 0.05);
+        }
+        
+        .payment-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: var(--deep-blue-gray);
+        }
+        
+        /* Insurance Section */
+        .insurance-toggle {
+            display: flex;
+            align-items: center;
+            margin: 1.5rem 0;
+        }
+        
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+            margin-right: 1rem;
+        }
+        
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 24px;
+        }
+        
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        
+        input:checked + .slider {
+            background-color: var(--muted-mauve);
+        }
+        
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+        
+        .insurance-details {
+            display: none;
+            margin-top: 1.5rem;
+            padding: 1.5rem;
+            background: rgba(225, 209, 215, 0.2);
+            border-radius: 10px;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--deep-blue-gray);
+            font-weight: 500;
+        }
+        
+        .form-group input, 
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid var(--light-pink);
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+        
+        /* Intake Form */
+        .intake-form {
+            margin-top: 2rem;
+        }
+        
+        .file-upload {
+            border: 2px dashed var(--light-pink);
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            margin-top: 1rem;
+            cursor: pointer;
+        }
+        
+        .file-upload:hover {
+            background: rgba(225, 209, 215, 0.1);
+        }
+        
+        /* Calendar Sync */
+        .calendar-sync {
+            margin-top: 2rem;
+        }
+        
+        .sync-options {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .sync-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.2rem;
+            background: white;
+            border: 1px solid var(--light-pink);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .sync-btn:hover {
+            background: var(--light-pink);
+        }
+        
+        /* Reminder Preferences */
+        .reminder-options {
+            margin-top: 1.5rem;
+        }
+        
+        .reminder-option {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .reminder-option input {
+            margin-right: 0.8rem;
+        }
+        
+        /* CTA Button */
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: var(--muted-mauve);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 2rem;
+            width: 100%;
+            text-align: center;
+            text-decoration: none;
+        }
+        
+        .cta-button:hover {
+            background: var(--deep-blue-gray);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(79, 89, 128, 0.2);
+        }
+        
+        /* Responsive Design */
+        @media (min-width: 992px) {
+            .booking-container {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .booking-step:last-child {
+                grid-column: span 2;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .booking-hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .booking-step {
+                padding: 1.5rem;
+            }
+            
+            .payment-options {
+                flex-direction: column;
+            }
+            
+            .payment-option {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">ABY <span>Therapy</span></div>
+            <a href="index.html" class="cta-button">Back to Home</a>
+        </div>
+    </nav>
+
+    <!-- Booking Hero -->
+    <section class="booking-hero">
+        <div class="container">
+            <h1>Book Your Therapy Session</h1>
+            <p>Select your preferred therapist and available time slot</p>
+        </div>
+    </section>
+
+    <!-- Main Booking Container -->
+    <main class="booking-container">
+        <!-- Step 1: Therapist Selection -->
+        <section class="booking-step">
+            <h2>1. Choose Your Therapist</h2>
+            <p>Select from our licensed mental health professionals</p>
+            
+            <div class="therapist-options">
+                <!-- Therapist 1 -->
+                <div class="therapist-option selected" data-therapist="dellah">
+                    <div class="therapist-avatar">
+                        <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=2070" alt="Dr. Dellah Miheso">
+                    </div>
+                    <div class="therapist-details">
+                        <h3>Dr. Dellah Miheso</h3>
+                        <p class="therapist-specialty">Clinical Psychologist</p>
+                        <p>Specializes: Trauma, Anxiety, CBT</p>
+                    </div>
+                </div>
+                
+                <!-- Therapist 2 -->
+                <div class="therapist-option" data-therapist="james">
+                    <div class="therapist-avatar">
+                        <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?q=80&w=1964" alt="Dr. James Kariuki">
+                    </div>
+                    <div class="therapist-details">
+                        <h3>Dr. James Kariuki</h3>
+                        <p class="therapist-specialty">Marriage & Family Therapist</p>
+                        <p>Specializes: Relationships, Couples Therapy</p>
+                    </div>
+                </div>
+                
+                <!-- Therapist 3 -->
+                <div class="therapist-option" data-therapist="amina">
+                    <div class="therapist-avatar">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1888" alt="Dr. Amina Wanjiku">
+                    </div>
+                    <div class="therapist-details">
+                        <h3>Dr. Amina Wanjiku</h3>
+                        <p class="therapist-specialty">Child Psychologist</p>
+                        <p>Specializes: Adolescent Therapy, Play Therapy</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Step 2: Date & Time Selection -->
+        <section class="booking-step">
+            <h2>2. Select Date & Time</h2>
+            <p>Choose from available slots for your selected therapist</p>
+            
+            <div class="calendar-container">
+                <input type="text" id="booking-date" placeholder="Select Date" class="flatpickr">
+                
+                <div class="time-slots">
+                    <div class="time-slot" data-time="09:00">9:00 AM</div>
+                    <div class="time-slot" data-time="10:30">10:30 AM</div>
+                    <div class="time-slot" data-time="12:00">12:00 PM</div>
+                    <div class="time-slot" data-time="14:00">2:00 PM</div>
+                    <div class="time-slot" data-time="15:30">3:30 PM</div>
+                    <div class="time-slot" data-time="17:00">5:00 PM</div>
+                </div>
+            </div>
+
+            <!-- Calendar Sync -->
+            <div class="calendar-sync">
+                <h3>Add to Calendar</h3>
+                <p>Sync this appointment with your preferred calendar</p>
+                <div class="sync-options">
+                    <button class="sync-btn">
+                        <i class="fab fa-google" style="color: #DB4437;"></i> Google
+                    </button>
+                    <button class="sync-btn">
+                        <i class="fab fa-microsoft" style="color: #0078D7;"></i> Outlook
+                    </button>
+                    <button class="sync-btn">
+                        <i class="fas fa-calendar" style="color: var(--muted-mauve);"></i> iCal
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Step 3: Payment & Confirmation -->
+        <section class="booking-step">
+            <h2>3. Payment & Confirmation</h2>
+            
+            <div class="appointment-details">
+                <div class="detail-row">
+                    <span class="detail-label">Therapist:</span>
+                    <span id="confirm-therapist">Dr. Dellah Miheso</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Date:</span>
+                    <span id="confirm-date">Not selected</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Time:</span>
+                    <span id="confirm-time">Not selected</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Duration:</span>
+                    <span>50 minutes</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Session Type:</span>
+                    <span>Video Consultation</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Fee:</span>
+                    <span>KES 3,500</span>
+                </div>
+            </div>
+
+            <!-- Insurance Section -->
+            <div class="insurance-toggle">
+                <label class="toggle-switch">
+                    <input type="checkbox" id="insurance-toggle">
+                    <span class="slider"></span>
+                </label>
+                <span>I want to use insurance</span>
+            </div>
+
+            <div class="insurance-details" id="insurance-details">
+                <div class="form-group">
+                    <label for="insurance-provider">Insurance Provider</label>
+                    <select id="insurance-provider">
+                        <option value="">Select Provider</option>
+                        <option value="healthshield">HealthShield</option>
+                        <option value="carefirst">CareFirst</option>
+                        <option value="wellnessguard">WellnessGuard</option>
+                        <option value="mediplus">MediPlus</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="member-id">Member ID</label>
+                    <input type="text" id="member-id" placeholder="Your insurance member ID">
+                </div>
+                <div class="form-group">
+                    <label for="authorization-code">Authorization Code (if any)</label>
+                    <input type="text" id="authorization-code" placeholder="Optional authorization code">
+                </div>
+            </div>
+
+            <!-- Payment Methods -->
+            <div class="payment-methods">
+                <h3>Payment Method</h3>
+                <div class="payment-options">
+                    <div class="payment-option selected" data-method="mpesa">
+                        <div class="payment-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <p>M-Pesa</p>
+                    </div>
+                    <div class="payment-option" data-method="card">
+                        <div class="payment-icon">
+                            <i class="far fa-credit-card"></i>
+                        </div>
+                        <p>Credit/Debit Card</p>
+                    </div>
+                    <div class="payment-option" data-method="bank">
+                        <div class="payment-icon">
+                            <i class="fas fa-university"></i>
+                        </div>
+                        <p>Bank Transfer</p>
+                    </div>
+                </div>
+
+                <!-- Card Payment Form (hidden by default) -->
+                <div class="card-details" id="card-details" style="display: none;">
+                    <div class="form-group">
+                        <label for="card-number">Card Number</label>
+                        <input type="text" id="card-number" placeholder="1234 5678 9012 3456">
+                    </div>
+                    <div class="form-group">
+                        <label for="card-expiry">Expiry Date</label>
+                        <input type="text" id="card-expiry" placeholder="MM/YY">
+                    </div>
+                    <div class="form-group">
+                        <label for="card-cvv">CVV</label>
+                        <input type="text" id="card-cvv" placeholder="123">
+                    </div>
+                </div>
+
+                <!-- M-Pesa Payment Form (shown by default) -->
+                <div class="mpesa-details" id="mpesa-details">
+                    <p>You will receive an M-Pesa prompt on your phone after booking</p>
+                </div>
+            </div>
+
+            <!-- Intake Form Upload -->
+            <div class="intake-form">
+                <h3>Intake Form (Optional)</h3>
+                <p>Upload completed intake forms to save time during your session</p>
+                <label for="file-upload" class="file-upload">
+                    <i class="fas fa-cloud-upload-alt" style="font-size: 2rem; color: var(--muted-mauve); margin-bottom: 1rem;"></i>
+                    <p>Click to upload files or drag and drop</p>
+                    <p class="small">PDF, DOCX up to 5MB</p>
+                    <input type="file" id="file-upload" style="display: none;">
+                </label>
+            </div>
+
+            <!-- Reminder Preferences -->
+            <div class="reminder-options">
+                <h3>Reminder Preferences</h3>
+                <div class="reminder-option">
+                    <input type="checkbox" id="email-reminder" checked>
+                    <label for="email-reminder">Email reminder 24 hours before</label>
+                </div>
+                <div class="reminder-option">
+                    <input type="checkbox" id="sms-reminder" checked>
+                    <label for="sms-reminder">SMS reminder 1 hour before</label>
+                </div>
+            </div>
+
+            <!-- Final CTA -->
+            <button class="cta-button" id="confirm-booking">Confirm & Pay Now</button>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>ABY Therapy</h3>
+                <p>Professional mental health care that fits your life</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <p><i class="fas fa-phone"></i> +254 700 123 456</p>
+                <p><i class="fas fa-envelope"></i> bookings@abytherapy.co.ke</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 ABY Therapy. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://js.stripe.com/v3/"></script> <!-- For card payments -->
+    
+    <!-- Main JavaScript -->
+    <script>
+        // Initialize date picker
+        flatpickr("#booking-date", {
+            minDate: "today",
+            maxDate: new Date().fp_incr(30), // 30 days from now
+            disable: [
+                function(date) {
+                    // Disable weekends
+                    return (date.getDay() === 0 || date.getDay() === 6);
+                }
+            ]
+        });
+        
+        // Therapist selection
+        const therapistOptions = document.querySelectorAll('.therapist-option');
+        therapistOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                therapistOptions.forEach(opt => opt.classList.remove('selected'));
+                this.classList.add('selected');
+                document.getElementById('confirm-therapist').textContent = 
+                    this.querySelector('h3').textContent;
+            });
+        });
+        
+        // Time slot selection
+        const timeSlots = document.querySelectorAll('.time-slot');
+        timeSlots.forEach(slot => {
+            slot.addEventListener('click', function() {
+                timeSlots.forEach(s => s.classList.remove('selected'));
+                this.classList.add('selected');
+                document.getElementById('confirm-time').textContent = this.dataset.time;
+            });
+        });
+        
+        // Date selection update
+        document.getElementById('booking-date').addEventListener('change', function() {
+            document.getElementById('confirm-date').textContent = this.value;
+        });
+        
+        // Insurance toggle
+        document.getElementById('insurance-toggle').addEventListener('change', function() {
+            const insuranceDetails = document.getElementById('insurance-details');
+            insuranceDetails.style.display = this.checked ? 'block' : 'none';
+        });
+        
+        // Payment method selection
+        const paymentOptions = document.querySelectorAll('.payment-option');
+        paymentOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                paymentOptions.forEach(opt => opt.classList.remove('selected'));
+                this.classList.add('selected');
+                
+                // Show relevant payment form
+                document.getElementById('card-details').style.display = 'none';
+                document.getElementById('mpesa-details').style.display = 'none';
+                
+                if(this.dataset.method === 'card') {
+                    document.getElementById('card-details').style.display = 'block';
+                } else if(this.dataset.method === 'mpesa') {
+                    document.getElementById('mpesa-details').style.display = 'block';
+                }
+            });
+        });
+        
+        // File upload interaction
+        document.getElementById('file-upload').addEventListener('change', function() {
+            if(this.files.length > 0) {
+                const fileName = this.files[0].name;
+                const uploadArea = this.parentElement;
+                uploadArea.innerHTML = `
+                    <i class="fas fa-check-circle" style="font-size: 2rem; color: #4CAF50; margin-bottom: 1rem;"></i>
+                    <p>${fileName}</p>
+                    <p class="small">Click to change file</p>
+                `;
+                // Re-attach the file input
+                const newInput = document.createElement('input');
+                newInput.type = 'file';
+                newInput.id = 'file-upload';
+                newInput.style.display = 'none';
+                newInput.addEventListener('change', arguments.callee);
+                uploadArea.appendChild(newInput);
+            }
+        });
+        
+        // Calendar sync buttons
+        document.querySelectorAll('.sync-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const date = document.getElementById('confirm-date').textContent;
+                const time = document.getElementById('confirm-time').textContent;
+                
+                if(date === 'Not selected' || time === 'Not selected') {
+                    alert('Please select date and time first');
+                    return;
+                }
+                
+                // In a real implementation, this would generate the appropriate calendar file
+                alert(`Calendar event created for ${date} at ${time}. Would be synced in production.`);
+            });
+        });
+        
+        // Booking confirmation
+        document.getElementById('confirm-booking').addEventListener('click', function() {
+            const therapist = document.getElementById('confirm-therapist').textContent;
+            const date = document.getElementById('confirm-date').textContent;
+            const time = document.getElementById('confirm-time').textContent;
+            const paymentMethod = document.querySelector('.payment-option.selected').dataset.method;
+            
+            if(date === 'Not selected' || time === 'Not selected') {
+                alert('Please select both date and time before booking');
+                return;
+            }
+            
+            // Process payment based on selected method
+            if(paymentMethod === 'mpesa') {
+                alert(`M-Pesa payment request sent for session with ${therapist} on ${date} at ${time}. Check your phone to complete payment.`);
+            } else if(paymentMethod === 'card') {
+                // In production, this would integrate with Stripe.js
+                alert(`Processing card payment for session with ${therapist} on ${date} at ${time}.`);
+            }
+            
+            // Show confirmation
+            alert(`Booking confirmed!\n\nTherapist: ${therapist}\nDate: ${date}\nTime: ${time}\n\nA confirmation has been sent to your email with calendar invite.`);
+        });
+    </script>
+</body>
+</html>
